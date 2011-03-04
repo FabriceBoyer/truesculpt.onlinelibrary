@@ -1,3 +1,4 @@
 syntax: glob
 .settings
 *.lnk
+war\WEB-INF\classes
