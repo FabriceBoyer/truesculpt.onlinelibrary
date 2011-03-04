@@ -33,10 +33,6 @@
   
 <div align="left">
   <form action="<%= uploadURL %>" method="POST" enctype="multipart/form-data">
-    Sharing: <select name="share">
-      <option value="private">Private</option>
-          <option value="public">Public</option>
-        </select>
     Title: <input type="text" size="40" name="title" value="MySculpture"><br>
     Description:<br>
     <textarea cols="80" rows="20" name="description" ></textarea><br>

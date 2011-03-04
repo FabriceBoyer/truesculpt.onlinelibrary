@@ -61,9 +61,6 @@ public class MediaObject
 	@Persistent
 	private String description;
 
-	@Persistent
-	private boolean isPublic;
-
 	private static final List<String> IMAGE_TYPES = Arrays.asList("image/png",
 			"image/jpeg", "image/tiff", "image/gif", "image/bmp");
 
@@ -80,7 +77,6 @@ public class MediaObject
 		this.size = size;
 		this.title = title;
 		this.description = description;
-		this.isPublic = isPublic;
 	}
 
 	public Key getKey()
@@ -96,11 +92,6 @@ public class MediaObject
 	public Date getCreationTime()
 	{
 		return creation;
-	}
-
-	public boolean isPublic()
-	{
-		return isPublic;
 	}
 
 	public String getDescription()

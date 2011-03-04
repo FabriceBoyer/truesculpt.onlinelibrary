@@ -62,11 +62,6 @@ public class Display extends HttpServlet
 		User user = userService.getCurrentUser();
 
 		MediaObject result = results.get(0);
-		if (!result.isPublic() && !result.getOwner().equals(user))
-		{
-			resp.sendRedirect("/?error="+ URLEncoder.encode("Not authorized to access", "UTF-8"));
-			return;
-		}
 
 		String displayURL = result.getURLPath();
 		String authURL = (user != null) ? userService.createLogoutURL("/") : userService.createLoginURL("/");

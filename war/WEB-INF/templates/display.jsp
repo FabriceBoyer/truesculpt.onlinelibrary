@@ -29,7 +29,7 @@
 	</script>
 </head>
 <body>
-  <div align="right">
+<div align="right">
     <%
       if (user != null) {
     %>
@@ -43,15 +43,13 @@
 <br>
 <div align="center">
      <a href="javascript:javascript:history.go(-1)"><img src="<%= displayURL %>"></a><br>
-     <%= item.getFilename() %>  <br>
+     <%= item.getFilename() %><br>
      <%=item.getDescription()%><br>
 	 <%=item.getSize()/1000%> ko<br>
     <%=item.getCreationTime()%><br>
     <!--<%=item.getContentType()%><br>-->
 </div>
   
-  
-
    <br>
   <a href="javascript:javascript:history.go(-1)">Back</a>
 </body>
