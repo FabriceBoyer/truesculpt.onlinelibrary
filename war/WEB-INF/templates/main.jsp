@@ -1,6 +1,8 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
   User user = (User) request.getAttribute("user");
   String authURL = (String) request.getAttribute("authURL");
@@ -73,8 +75,9 @@
 	                <img src="<%= item.getThumbnailURLPath() %>">
 	                </a>       
 	                <br>       
-	                <%=item.getTitle()%>
-		            </TD>
+	                 <c:set var="title" value="<%= item.getTitle() %>"/>
+    				 ${fn:escapeXml(title)}<br>
+	                </TD>
 	             <% } %>
              <% } %>
              </TR>

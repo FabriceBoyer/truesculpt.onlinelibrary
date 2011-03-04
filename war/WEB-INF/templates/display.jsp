@@ -1,5 +1,7 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" 
   "http://www.w3.org/TR/html4/strict.dtd">
 <%
@@ -43,10 +45,17 @@
 <br>
 <div align="center">
      <a href="javascript:javascript:history.go(-1)"><img src="<%= displayURL %>"></a><br>
-     <%= item.getFilename() %><br>
-     <%=item.getDescription()%><br>
+     
+     <c:set var="filename" value="<%= item.getFilename() %>"/>
+     ${fn:escapeXml(filename)}<br>
+     
+     <c:set var="description" value="<%= item.getDescription() %>"/>
+     ${fn:escapeXml(description)}<br>
+     
 	 <%=item.getSize()/1000%> ko<br>
+	 
      <%=item.getCreationTime()%><br>
+     
      <!--<%=item.getContentType()%><br>-->
 </div>
   
