@@ -1,11 +1,17 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.lang.Integer" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
   User user = (User) request.getAttribute("user");
   String authURL = (String) request.getAttribute("authURL");
+  String strPage= (String) request.getParameter("page");
+  Integer nPageNumber= 0;
+  if (strPage!=null) { 
+   nPageNumber=Integer.parseInt(strPage);
+  }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
@@ -44,7 +50,7 @@
       </a>
     </div>
 
-    <ul>
+      <ul>
         <% 
            String[] errors = (String[]) request.getAttribute("errors");
            for (int i = 0; i < errors.length; i++) { %>
@@ -52,18 +58,20 @@
         <% } %>
       </ul>
 
-<div align="center">
-       TrueSculpt online library   
+	<div align="center">
+       TrueSculpt online library  
+        
+       <br>
        <br>
        
       <%
          List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
 	     int nFileCount=files.size();
 	     int nMaxColCount=3;
-	     int nMaxRowCount=10;
+	     int nMaxRowCount=2;
 	     int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
 	     int nMaxPageCount=nFileCount/nMaxElemPerPage;          
-	     int nCurrPage=0;
+	     int nCurrPage=nPageNumber;
 	     if (nCurrPage>nMaxPageCount) { nCurrPage=nMaxPageCount; }
 	     if (nCurrPage<0) { nCurrPage=0; }
          if ( nFileCount > 0) {%>
@@ -92,9 +100,9 @@
       <% } %>
    </div>
     
-      <% if (user != null) { %>
-        <a href="/upload">Upload new media</a>
-      <% } %>      
+  <% if (user != null) { %>
+    <a href="/upload">Upload new media</a>
+  <% } %>      
  
   </body>
 </html>

@@ -42,7 +42,7 @@ public class Index extends HttpServlet
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
-		String strquery = "select from " + MediaObject.class.getName() + " order by creation desc range 0,20";
+		String strquery = "select from " + MediaObject.class.getName() + " order by creation desc";
 		Query query = pm.newQuery(strquery);
 
 		List<MediaObject> results = (List<MediaObject>) query.execute();
