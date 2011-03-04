@@ -58,25 +58,27 @@
        
       <%
          List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
-           int n=files.size();
-           int nColCount=3;
-           int nRowCount=n/nColCount;
-         if ( n > 0) {%>
+           int nFileCount=files.size();
+           int nMaxColCount=3;
+           int nMaxRowCount=4;
+           int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
+           int nPageCount=nFileCount/nMaxElemPerPage;          
+           int nCurrPage=0;
+         if ( nFileCount > 0) {%>
          <TABLE>
-         <%for (int i = 0; i <= nRowCount; i++) {%>
+         <%for (int i = 0; i <= nMaxRowCount; i++) {%>
             <TR>
-             <% for (int j = 0; j < nColCount; j++) { %>
+             <% for (int j = 0; j < nMaxColCount; j++) { %>
                <TD>
-                  <% int index =i*nColCount+j; 
-                    if (index<n) { %>
-	                <%  MediaObject item = files.get(index); %>
-				    
+                  <% int index =nCurrPage*nMaxElemPerPage+i*nMaxColCount+j; 
+                    if (index<nFileCount) { %>
+	                <%  MediaObject item = files.get(index); %>				    
 	                <a href="<%=item.getDisplayURL()%>"> 
 	                <img src="<%= item.getThumbnailURLPath() %>">
 	                </a>       
 	                <br>       
-	                 <c:set var="title" value="<%= item.getTitle() %>"/>
-    				 ${fn:escapeXml(title)}<br>
+	                <c:set var="title" value="<%= item.getTitle() %>"/>
+    				${fn:escapeXml(title)}<br>
 	                </TD>
 	             <% } %>
              <% } %>
