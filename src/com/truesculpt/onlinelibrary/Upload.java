@@ -36,7 +36,6 @@ public class Upload extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException
 	{
-
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 

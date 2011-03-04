@@ -35,17 +35,14 @@ public class Index extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException
 	{
-
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 
-		String authURL = (user != null) ? userService.createLogoutURL("/")
-				: userService.createLoginURL("/");
+		String authURL = (user != null) ? userService.createLogoutURL("/") : userService.createLoginURL("/");
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
-		String strquery = "select from " + MediaObject.class.getName()
-				+ " order by creation desc range 0,20";
+		String strquery = "select from " + MediaObject.class.getName() + " order by creation desc range 0,20";
 		Query query = pm.newQuery(strquery);
 
 		List<MediaObject> results = (List<MediaObject>) query.execute();
@@ -57,8 +54,7 @@ public class Index extends HttpServlet
 		req.setAttribute("files", results);
 		req.setAttribute("authURL", authURL);
 		req.setAttribute("user", user);
-		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("WEB-INF/templates/main.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/main.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

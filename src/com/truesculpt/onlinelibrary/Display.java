@@ -40,8 +40,7 @@ public class Display extends HttpServlet
 		String blobKeyString = req.getParameter("key");
 		if (blobKeyString == null || blobKeyString.equals(""))
 		{
-			resp.sendRedirect("/?error="
-					+ URLEncoder.encode("BlobKey not provided", "UTF-8"));
+			resp.sendRedirect("/?error="+ URLEncoder.encode("BlobKey not provided", "UTF-8"));
 			return;
 		}
 
@@ -49,15 +48,13 @@ public class Display extends HttpServlet
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
 		Query query = pm.newQuery(MediaObject.class, "blob == blobParam");
-		query.declareImports("import "
-				+ "com.google.appengine.api.blobstore.BlobKey");
+		query.declareImports("import "+ "com.google.appengine.api.blobstore.BlobKey");
 		query.declareParameters("BlobKey blobParam");
 
 		List<MediaObject> results = (List<MediaObject>) query.execute(blobKey);
 		if (results.isEmpty())
 		{
-			resp.sendRedirect("/?error="
-					+ URLEncoder.encode("BlobKey does not exist", "UTF-8"));
+			resp.sendRedirect("/?error="+ URLEncoder.encode("BlobKey does not exist", "UTF-8"));
 			return;
 		}
 
@@ -67,14 +64,12 @@ public class Display extends HttpServlet
 		MediaObject result = results.get(0);
 		if (!result.isPublic() && !result.getOwner().equals(user))
 		{
-			resp.sendRedirect("/?error="
-					+ URLEncoder.encode("Not authorized to access", "UTF-8"));
+			resp.sendRedirect("/?error="+ URLEncoder.encode("Not authorized to access", "UTF-8"));
 			return;
 		}
 
 		String displayURL = result.getURLPath();
-		String authURL = (user != null) ? userService.createLogoutURL("/")
-				: userService.createLoginURL("/");
+		String authURL = (user != null) ? userService.createLogoutURL("/") : userService.createLoginURL("/");
 
 		req.setAttribute("displayURL", displayURL);
 		req.setAttribute("authURL", authURL);
@@ -82,8 +77,7 @@ public class Display extends HttpServlet
 		req.setAttribute("item", result);
 		req.setAttribute("blobkey", blobKeyString);
 
-		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("WEB-INF/templates/display.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/display.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

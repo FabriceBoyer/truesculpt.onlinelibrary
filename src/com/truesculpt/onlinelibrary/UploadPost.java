@@ -36,22 +36,17 @@ import com.google.appengine.api.users.UserServiceFactory;
 @SuppressWarnings("serial")
 public class UploadPost extends HttpServlet
 {
+	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 
-	private BlobstoreService blobstoreService = BlobstoreServiceFactory
-			.getBlobstoreService();
-
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
-
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 
 		Map<String, BlobKey> blobs = blobstoreService.getUploadedBlobs(req);
 		if (blobs.keySet().isEmpty())
 		{
-			resp.sendRedirect("/?error="
-					+ URLEncoder.encode("No file uploaded", "UTF-8"));
+			resp.sendRedirect("/?error="+ URLEncoder.encode("No file uploaded", "UTF-8"));
 			return;
 		}
 
@@ -88,9 +83,7 @@ public class UploadPost extends HttpServlet
 		catch (Exception e)
 		{
 			blobstoreService.delete(blobKey);
-			resp.sendRedirect("/?error="
-					+ URLEncoder.encode(
-							"Object save failed: " + e.getMessage(), "UTF-8"));
+			resp.sendRedirect("/?error="+ URLEncoder.encode("Object save failed: " + e.getMessage(), "UTF-8"));
 		}
 	}
 }
