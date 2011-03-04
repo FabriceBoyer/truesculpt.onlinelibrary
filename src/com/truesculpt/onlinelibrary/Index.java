@@ -43,11 +43,10 @@ public class Index extends HttpServlet {
 
     PersistenceManager pm = PMF.get().getPersistenceManager();
     
-    Query query = pm.newQuery(MediaObject.class, "owner == userParam");
-    query.declareImports("import com.google.appengine.api.users.User");
-    query.declareParameters("User userParam");
+    String strquery = "select from " + MediaObject.class.getName() + " order by date desc range 0,20";
+    Query query = pm.newQuery(strquery);
 
-    List<MediaObject> results = (List<MediaObject>) query.execute(user);
+    List<MediaObject> results = (List<MediaObject>) query.execute();
 
     String[] errors = req.getParameterValues("error");
     if (errors == null) errors = new String[0];
