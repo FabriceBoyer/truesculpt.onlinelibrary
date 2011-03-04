@@ -122,8 +122,13 @@ public class MediaObject {
 
   public String getURLPath() {
 	ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    return imagesService.getServingUrl(blob,200,false);
+    return imagesService.getServingUrl(blob);
   }
+  
+  public String getThumbnailURLPath() {
+		ImagesService imagesService = ImagesServiceFactory.getImagesService();
+	    return imagesService.getServingUrl(blob,200,false);
+	  }
 
   public String getDisplayURL() {
     String key = blob.getKeyString();

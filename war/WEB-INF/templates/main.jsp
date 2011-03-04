@@ -35,36 +35,40 @@
       </ul>
 
     <h1 align="center">
-      <% if (user != null) { %>
-        Your media
-      <% } else { %>
         Welcome to the TrueSculpt online library
-      <% } %>
     </h1>
 
     <hr>
       <%
-         List<MediaObject> files =
-           (List<MediaObject>) request.getAttribute("files");
-         if (files.size() > 0) {
-           for (int i = 0; i < files.size(); i++) {
-             MediaObject item = files.get(i);
-      %>
-            <b>
-              <% if (item.isImage()) { %>
-                <a href="<%=item.getDisplayURL()%>">
-              <% } else { %>
-                <a href="<%=item.getURLPath()%>">
-              <% } %>
-               "<%=item.getTitle()%>"
-            </a></b>:
-            <%=item.getSize()%> <%=item.getCreationTime()%>
-            <%=item.getContentType()%></a><br>
-            <%=item.getDescription()%><br>
-      <%
-           }
-         } else {
-      %>
+         List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
+           int n=files.size();
+           int nColCount=4;
+           int nRowCount=n/nColCount;
+         if ( n > 0) {%>
+         <TABLE>
+         <%for (int i = 0; i <= nRowCount; i++) {%>
+            <TR>
+             <% for (int j = 0; j < nColCount; j++) { %>
+               <TD>
+                  <% int index =i*nColCount+j; 
+                    if (index<n) { %>
+	                <%  MediaObject item = files.get(index); %>
+				     <%=item.getTitle()%>
+	                <a href="<%=item.getDisplayURL()%>"> 
+	                <img src="<%= item.getThumbnailURLPath() %>">
+	                </a>              
+	
+	      		    <%=item.getSize()/1000%> ko<br>
+		            <%=item.getCreationTime()%><br>
+		            <%=item.getContentType()%><br>
+		            <%=item.getDescription()%><br>
+		            </TD>
+	             <% } %>
+             <% } %>
+             </TR>
+         <% } %>
+        </TABLE>
+        <%} else { %>
         <div align="center">
           <% if (user != null) { %>
             No media found.
@@ -73,10 +77,12 @@
           <% } %>
         </div>
       <% } %>
-
+     
       <% if (user != null) { %>
         <hr>
         <a href="/upload">Upload new media</a>
       <% } %>
+      
+ 
   </body>
 </html>
