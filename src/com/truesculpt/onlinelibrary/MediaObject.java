@@ -66,7 +66,7 @@ public class MediaObject
 
 	public MediaObject(User owner, BlobKey blob, Date creationTime,
 			String contentType, String filename, long size, String title,
-			String description, boolean isPublic)
+			String description)
 	{
 
 		this.blob = blob;

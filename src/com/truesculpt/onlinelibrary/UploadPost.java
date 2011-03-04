@@ -71,12 +71,11 @@ public class UploadPost extends HttpServlet
 
 		String title = req.getParameter("title");
 		String description = req.getParameter("description");
-		boolean isShared = "public".equalsIgnoreCase(req.getParameter("share"));
 
 		try
 		{
 			MediaObject mediaObj = new MediaObject(user, blobKey, creation,
-					contentType, fileName, size, title, description, isShared);
+					contentType, fileName, size, title, description);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
 			resp.sendRedirect("/");
 		}
