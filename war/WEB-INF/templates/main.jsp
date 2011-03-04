@@ -58,20 +58,22 @@
        
       <%
          List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
-           int nFileCount=files.size();
-           int nMaxColCount=3;
-           int nMaxRowCount=4;
-           int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
-           int nPageCount=nFileCount/nMaxElemPerPage;          
-           int nCurrPage=0;
+	     int nFileCount=files.size();
+	     int nMaxColCount=3;
+	     int nMaxRowCount=10;
+	     int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
+	     int nMaxPageCount=nFileCount/nMaxElemPerPage;          
+	     int nCurrPage=0;
+	     if (nCurrPage>nMaxPageCount) { nCurrPage=nMaxPageCount; }
+	     if (nCurrPage<0) { nCurrPage=0; }
          if ( nFileCount > 0) {%>
          <TABLE>
-         <%for (int i = 0; i <= nMaxRowCount; i++) {%>
+         <%for (int i = 0; i < nMaxRowCount; i++) {%>
             <TR>
              <% for (int j = 0; j < nMaxColCount; j++) { %>
                <TD>
-                  <% int index =nCurrPage*nMaxElemPerPage+i*nMaxColCount+j; 
-                    if (index<nFileCount) { %>
+                  <% int index=nCurrPage*nMaxElemPerPage+i*nMaxColCount+j; 
+                    if (index<nFileCount && index>=0) { %>
 	                <%  MediaObject item = files.get(index); %>				    
 	                <a href="<%=item.getDisplayURL()%>"> 
 	                <img src="<%= item.getThumbnailURLPath() %>">
