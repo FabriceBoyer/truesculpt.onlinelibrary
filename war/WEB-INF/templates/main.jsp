@@ -53,15 +53,12 @@
                   <% int index =i*nColCount+j; 
                     if (index<n) { %>
 	                <%  MediaObject item = files.get(index); %>
-				     <%=item.getTitle()%>
+				    
 	                <a href="<%=item.getDisplayURL()%>"> 
 	                <img src="<%= item.getThumbnailURLPath() %>">
-	                </a>              
-	
-	      		    <%=item.getSize()/1000%> ko<br>
-		            <%=item.getCreationTime()%><br>
-		            <%=item.getContentType()%><br>
-		            <%=item.getDescription()%><br>
+	                </a>       
+	                <br>       
+	                <%=item.getTitle()%>
 		            </TD>
 	             <% } %>
              <% } %>

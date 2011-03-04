@@ -7,7 +7,6 @@
   User user = (User) request.getAttribute("user");
   String authURL = (String) request.getAttribute("authURL");
   String displayURL = (String) request.getAttribute("displayURL");
-  String rotation = (String) request.getAttribute("rotation");
   String blobkey = (String) request.getAttribute("blobkey");
 %>
 <html lang="en">
@@ -28,9 +27,12 @@
     </a>
 
    <h1 align="center">
-     <%= item.getFilename() %>
-      <br>
-     <img src="<%= displayURL %>">
+     <img src="<%= displayURL %>"><br>
+     <%= item.getFilename() %>  <br>
+     <%=item.getDescription()%><br>
+	 <%=item.getSize()/1000%> ko<br>
+    <%=item.getCreationTime()%><br>
+    <!--<%=item.getContentType()%><br>-->
    </h1>
   
   
