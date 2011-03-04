@@ -42,7 +42,7 @@
 </div>
 <br>
 <div align="center">
-     <img src="<%= displayURL %>"><br>
+     <a href="javascript:javascript:history.go(-1)"><img src="<%= displayURL %>"></a><br>
      <%= item.getFilename() %>  <br>
      <%=item.getDescription()%><br>
 	 <%=item.getSize()/1000%> ko<br>
@@ -53,6 +53,6 @@
   
 
    <br>
-  <a href="/">Back</a>
+  <a href="javascript:javascript:history.go(-1)">Back</a>
 </body>
 </html>

@@ -45,6 +45,6 @@
   </form>
 </div>
   <hr>
-  <a href="/">Cancel</a>
+  <a href="javascript:javascript:history.go(-1)">Cancel</a>
 </body>
 </html>
