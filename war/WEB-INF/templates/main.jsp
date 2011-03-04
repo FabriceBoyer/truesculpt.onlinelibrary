@@ -84,13 +84,7 @@
          <% } %>
         </TABLE>
         <%} else { %>
-
-          <% if (user != null) { %>
             No media found.
-          <% } else { %>
-            Log in or look for media
-          <% } %>
-
       <% } %>
    </div>
     
