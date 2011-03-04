@@ -1,5 +1,5 @@
 <%@ page import="com.google.appengine.api.users.User" %>
-<%@ page import="com.google.appengine.demos.mediastore.MediaObject" %>
+<%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" 
   "http://www.w3.org/TR/html4/strict.dtd">
 <%
@@ -28,10 +28,12 @@
     </a>
 
    <h1 align="center">
-    <%= item.getFilename() %>
+     <%= item.getFilename() %>
+      <br>
+     <img src="<%= displayURL %>">
    </h1>
-   <br>
-   <img src="<%= displayURL %>">
+  
+  
 
    <br>
   <a href="/">Back</a>

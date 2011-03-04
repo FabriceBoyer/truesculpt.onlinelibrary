@@ -26,6 +26,8 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.users.User;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
@@ -119,8 +121,8 @@ public class MediaObject {
   }
 
   public String getURLPath() {
-    String key = blob.getKeyString();
-    return "/resource?key=" + key;
+	ImagesService imagesService = ImagesServiceFactory.getImagesService();
+    return imagesService.getServingUrl(blob,100,false);
   }
 
   public String getDisplayURL() {

@@ -1,5 +1,5 @@
 <%@ page import="com.google.appengine.api.users.User" %>
-<%@ page import="com.google.appengine.demos.mediastore.MediaObject" %>
+<%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
 <%@ page import="java.util.List" %>
 <%
   User user = (User) request.getAttribute("user");
