@@ -13,7 +13,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>TrueSculpt</title>
     
-    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />   
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
+    <script src="/scripts/analytics.js" type="text/javascript"></script>   
 
   </head>
   <body>

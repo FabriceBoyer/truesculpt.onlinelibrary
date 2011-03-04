@@ -12,6 +12,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Truesculpt Upload</title>
   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
+  <script src="/scripts/analytics.js" type="text/javascript"></script>  
 </head>
 <body>
   <div align="right">
