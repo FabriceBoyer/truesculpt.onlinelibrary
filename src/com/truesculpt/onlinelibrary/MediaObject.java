@@ -122,7 +122,7 @@ public class MediaObject {
 
   public String getURLPath() {
 	ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    return imagesService.getServingUrl(blob,100,false);
+    return imagesService.getServingUrl(blob,200,false);
   }
 
   public String getDisplayURL() {
