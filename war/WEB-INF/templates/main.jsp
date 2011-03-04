@@ -93,8 +93,7 @@
     
       <% if (user != null) { %>
         <a href="/upload">Upload new media</a>
-      <% } %>
-      
+      <% } %>      
  
   </body>
 </html>

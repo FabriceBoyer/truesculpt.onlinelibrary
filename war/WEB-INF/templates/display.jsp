@@ -46,8 +46,8 @@
      <%= item.getFilename() %><br>
      <%=item.getDescription()%><br>
 	 <%=item.getSize()/1000%> ko<br>
-    <%=item.getCreationTime()%><br>
-    <!--<%=item.getContentType()%><br>-->
+     <%=item.getCreationTime()%><br>
+     <!--<%=item.getContentType()%><br>-->
 </div>
   
    <br>
