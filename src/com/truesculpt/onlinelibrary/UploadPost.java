@@ -69,7 +69,7 @@ public class UploadPost extends HttpServlet {
     String contentType = blobInfo.getContentType();
     long size = blobInfo.getSize();
     Date creation = blobInfo.getCreation();
-    String fileName = blobInfo.getFilename();
+    String fileName =  blobInfo.getFilename();
 
     String title = req.getParameter("title");
     String description = req.getParameter("description");
