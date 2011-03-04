@@ -98,6 +98,12 @@
         <%} else { %>
             No media found.
       <% } %>
+      <br>
+      <a href="/?page=<%=0%>"><<</a>
+      <a href="/?page=<%=nPageNumber-1%>"><</a>
+      ...
+      <a href="/?page=<%=nPageNumber+1%>">></a>
+      <a href="/?page=<%=nMaxPageCount%>">>></a>
    </div>
     
   <% if (user != null) { %>
