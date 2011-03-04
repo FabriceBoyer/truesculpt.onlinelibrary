@@ -33,21 +33,22 @@
     <%
       if (user != null) {
     %>
-      Hi, <%= user.getNickname() %>
+     <%= user.getNickname() %>
     <% } %>
 
     <a href="<%= authURL %>">
       <% if (user != null) { %>Log out<% } else  { %>Log in<% } %>
     </a>
-
-   <h1 align="center">
+</div>
+<br>
+<div align="center">
      <img src="<%= displayURL %>"><br>
      <%= item.getFilename() %>  <br>
      <%=item.getDescription()%><br>
 	 <%=item.getSize()/1000%> ko<br>
     <%=item.getCreationTime()%><br>
     <!--<%=item.getContentType()%><br>-->
-   </h1>
+</div>
   
   
 

@@ -34,7 +34,7 @@
       <%
         if (user != null) {
       %>
-        Hi, <%= user.getNickname() %>
+        <%= user.getNickname() %>
       <% } %>
 
       <a href="<%= authURL %>">
@@ -50,15 +50,14 @@
         <% } %>
       </ul>
 
-    <h1 align="center">
-        Welcome to the TrueSculpt online library
-    </h1>
-
-    <hr>
+<div align="center">
+       TrueSculpt online library   
+       <br>
+       
       <%
          List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
            int n=files.size();
-           int nColCount=4;
+           int nColCount=3;
            int nRowCount=n/nColCount;
          if ( n > 0) {%>
          <TABLE>
@@ -82,17 +81,17 @@
          <% } %>
         </TABLE>
         <%} else { %>
-        <div align="center">
+
           <% if (user != null) { %>
             No media found.
           <% } else { %>
             Log in or look for media
           <% } %>
-        </div>
+
       <% } %>
-     
+   </div>
+    
       <% if (user != null) { %>
-        <hr>
         <a href="/upload">Upload new media</a>
       <% } %>
       

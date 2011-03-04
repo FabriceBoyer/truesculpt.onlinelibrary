@@ -28,21 +28,22 @@
 </head>
 <body>
   <div align="right">
-    Hi, <%= user.getNickname() %> | <a href="<%= authURL %>">Log out</a>
+    <%= user.getNickname() %> | <a href="<%= authURL %>">Log out</a>
   </div>
-
+  
+<div align="left">
   <form action="<%= uploadURL %>" method="POST" enctype="multipart/form-data">
     Sharing: <select name="share">
       <option value="private">Private</option>
           <option value="public">Public</option>
         </select>
-    Title: <input type="text" size="40" name="title"><br>
+    Title: <input type="text" size="40" name="title" value="MySculpture"><br>
     Description:<br>
-    <textarea cols="80" rows="20" name="description"></textarea><br>
+    <textarea cols="80" rows="20" name="description" ></textarea><br>
     Upload File: <input type="file" name="file"><br>
     <input type="submit" name="submit" value="Submit">
   </form>
-
+</div>
   <hr>
   <a href="/">Cancel</a>
 </body>
