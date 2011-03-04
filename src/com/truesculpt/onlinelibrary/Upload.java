@@ -29,26 +29,26 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
-public class Upload extends HttpServlet {
+public class Upload extends HttpServlet
+{
+	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 
-  private BlobstoreService blobstoreService =
-    BlobstoreServiceFactory.getBlobstoreService();
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException
+	{
 
-  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws
-      IOException, ServletException {
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
 
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
+		String authURL = userService.createLogoutURL("/");
+		String uploadURL = blobstoreService.createUploadUrl("/post");
 
-    String authURL = userService.createLogoutURL("/");
-    String uploadURL = blobstoreService.createUploadUrl("/post");
+		req.setAttribute("uploadURL", uploadURL);
+		req.setAttribute("authURL", authURL);
+		req.setAttribute("user", user);
 
-    req.setAttribute("uploadURL", uploadURL);
-    req.setAttribute("authURL", authURL);
-    req.setAttribute("user", user);
-
-    RequestDispatcher dispatcher = 
-      req.getRequestDispatcher("WEB-INF/templates/upload.jsp");
-    dispatcher.forward(req, resp);
-  }
+		RequestDispatcher dispatcher = req
+				.getRequestDispatcher("WEB-INF/templates/upload.jsp");
+		dispatcher.forward(req, resp);
+	}
 }

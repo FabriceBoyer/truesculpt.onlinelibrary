@@ -32,55 +32,58 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
-public class Display extends HttpServlet {
+public class Display extends HttpServlet
+{
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException
+	{
+		String blobKeyString = req.getParameter("key");
+		if (blobKeyString == null || blobKeyString.equals(""))
+		{
+			resp.sendRedirect("/?error="
+					+ URLEncoder.encode("BlobKey not provided", "UTF-8"));
+			return;
+		}
 
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException, ServletException {
+		BlobKey blobKey = new BlobKey(blobKeyString);
+		PersistenceManager pm = PMF.get().getPersistenceManager();
 
-    String blobKeyString = req.getParameter("key");
-    if (blobKeyString == null || blobKeyString.equals("")) {
-      resp.sendRedirect("/?error=" + 
-        URLEncoder.encode("BlobKey not provided", "UTF-8"));
-      return;
-    }
+		Query query = pm.newQuery(MediaObject.class, "blob == blobParam");
+		query.declareImports("import "
+				+ "com.google.appengine.api.blobstore.BlobKey");
+		query.declareParameters("BlobKey blobParam");
 
-    BlobKey blobKey = new BlobKey(blobKeyString);
-    PersistenceManager pm = PMF.get().getPersistenceManager();
+		List<MediaObject> results = (List<MediaObject>) query.execute(blobKey);
+		if (results.isEmpty())
+		{
+			resp.sendRedirect("/?error="
+					+ URLEncoder.encode("BlobKey does not exist", "UTF-8"));
+			return;
+		}
 
-    Query query = pm.newQuery(MediaObject.class, "blob == blobParam");
-    query.declareImports("import " +
-      "com.google.appengine.api.blobstore.BlobKey");
-    query.declareParameters("BlobKey blobParam");
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
 
-    List<MediaObject> results = (List<MediaObject>) query.execute(blobKey);
-    if (results.isEmpty()) {
-      resp.sendRedirect("/?error=" +
-        URLEncoder.encode("BlobKey does not exist", "UTF-8"));
-      return;
-    }
+		MediaObject result = results.get(0);
+		if (!result.isPublic() && !result.getOwner().equals(user))
+		{
+			resp.sendRedirect("/?error="
+					+ URLEncoder.encode("Not authorized to access", "UTF-8"));
+			return;
+		}
 
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
+		String displayURL = result.getURLPath();
+		String authURL = (user != null) ? userService.createLogoutURL("/")
+				: userService.createLoginURL("/");
 
-    MediaObject result = results.get(0);
-    if (!result.isPublic() && !result.getOwner().equals(user)) {
-      resp.sendRedirect("/?error=" +
-        URLEncoder.encode("Not authorized to access", "UTF-8"));
-      return;
-    }
+		req.setAttribute("displayURL", displayURL);
+		req.setAttribute("authURL", authURL);
+		req.setAttribute("user", user);
+		req.setAttribute("item", result);
+		req.setAttribute("blobkey", blobKeyString);
 
-    String displayURL = result.getURLPath();
-    String authURL = (user != null) ?
-      userService.createLogoutURL("/") : userService.createLoginURL("/");
-
-    req.setAttribute("displayURL", displayURL);
-    req.setAttribute("authURL", authURL);
-    req.setAttribute("user", user);
-    req.setAttribute("item", result);
-    req.setAttribute("blobkey", blobKeyString);
-
-    RequestDispatcher dispatcher =
-      req.getRequestDispatcher("WEB-INF/templates/display.jsp");
-    dispatcher.forward(req, resp);
-  }
+		RequestDispatcher dispatcher = req
+				.getRequestDispatcher("WEB-INF/templates/display.jsp");
+		dispatcher.forward(req, resp);
+	}
 }

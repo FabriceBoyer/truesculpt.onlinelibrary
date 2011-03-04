@@ -31,111 +31,127 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.users.User;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class MediaObject {
-  @PrimaryKey
-  @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-  private Key key;
+public class MediaObject
+{
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
 
-  @Persistent
-  private User owner;
+	@Persistent
+	private User owner;
 
-  @Persistent
-  private BlobKey blob;
+	@Persistent
+	private BlobKey blob;
 
-  @Persistent
-  private Date creation;
+	@Persistent
+	private Date creation;
 
-  @Persistent
-  private String contentType;
+	@Persistent
+	private String contentType;
 
-  @Persistent
-  private String filename;
+	@Persistent
+	private String filename;
 
-  @Persistent
-  private long size;
+	@Persistent
+	private long size;
 
-  @Persistent
-  private String title;
+	@Persistent
+	private String title;
 
-  @Persistent
-  private String description;
+	@Persistent
+	private String description;
 
-  @Persistent
-  private boolean isPublic;
+	@Persistent
+	private boolean isPublic;
 
-  private static final List<String> IMAGE_TYPES = Arrays.asList("image/png",
-    "image/jpeg", "image/tiff", "image/gif", "image/bmp");
+	private static final List<String> IMAGE_TYPES = Arrays.asList("image/png",
+			"image/jpeg", "image/tiff", "image/gif", "image/bmp");
 
-  public MediaObject(User owner, BlobKey blob, Date creationTime,
-      String contentType, String filename, long size, String title,
-      String description, boolean isPublic) {
+	public MediaObject(User owner, BlobKey blob, Date creationTime,
+			String contentType, String filename, long size, String title,
+			String description, boolean isPublic)
+	{
 
-    this.blob = blob;
-    this.owner = owner;
-    this.creation = creationTime;
-    this.contentType = contentType;
-    this.filename = filename;
-    this.size = size;
-    this.title = title;
-    this.description = description;
-    this.isPublic = isPublic;
-  }
+		this.blob = blob;
+		this.owner = owner;
+		this.creation = creationTime;
+		this.contentType = contentType;
+		this.filename = filename;
+		this.size = size;
+		this.title = title;
+		this.description = description;
+		this.isPublic = isPublic;
+	}
 
-  public Key getKey() {
-    return key;
-  }
+	public Key getKey()
+	{
+		return key;
+	}
 
-  public User getOwner() {
-    return owner;
-  }
+	public User getOwner()
+	{
+		return owner;
+	}
 
-  public Date getCreationTime() {
-    return creation;
-  }
+	public Date getCreationTime()
+	{
+		return creation;
+	}
 
-  public boolean isPublic() {
-    return isPublic;
-  }
+	public boolean isPublic()
+	{
+		return isPublic;
+	}
 
-  public String getDescription() {
-    return description;
-  }
+	public String getDescription()
+	{
+		return description;
+	}
 
-  public String getTitle() {
-    return title;
-  }
+	public String getTitle()
+	{
+		return title;
+	}
 
-  public String getFilename() {
-    return filename;
-  }
+	public String getFilename()
+	{
+		return filename;
+	}
 
-  public long getSize() {
-    return size;
-  }
+	public long getSize()
+	{
+		return size;
+	}
 
-  public String getContentType() {
-    if (contentType ==  null) {
-      return "text/plain";
-    }
-    return contentType;
-  }
+	public String getContentType()
+	{
+		if (contentType == null)
+		{
+			return "text/plain";
+		}
+		return contentType;
+	}
 
-  public String getURLPath() {
-	ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    return imagesService.getServingUrl(blob);
-  }
-  
-  public String getThumbnailURLPath() {
+	public String getURLPath()
+	{
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
-	    return imagesService.getServingUrl(blob,200,false);
-	  }
+		return imagesService.getServingUrl(blob);
+	}
 
-  public String getDisplayURL() {
-    String key = blob.getKeyString();
-    return "/display?key=" + key;
-  }
+	public String getThumbnailURLPath()
+	{
+		ImagesService imagesService = ImagesServiceFactory.getImagesService();
+		return imagesService.getServingUrl(blob, 200, false);
+	}
 
-  public boolean isImage() {
-    return IMAGE_TYPES.contains(getContentType());
-  }
+	public String getDisplayURL()
+	{
+		String key = blob.getKeyString();
+		return "/display?key=" + key;
+	}
+
+	public boolean isImage()
+	{
+		return IMAGE_TYPES.contains(getContentType());
+	}
 }
