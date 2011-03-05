@@ -57,4 +57,12 @@ public class Index extends HttpServlet
 		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/main.jsp");
 		dispatcher.forward(req, resp);
 	}
+	
+	  public static int saturatePageNumber(int page, int nMaxPageCount)
+	  {
+	  	  int nRes=page;
+	  	  if (page>nMaxPageCount) { nRes=nMaxPageCount; }
+		  if (page<0) { nRes=0; }
+		  return nRes;
+	  }
 }

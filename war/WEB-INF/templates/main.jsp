@@ -1,5 +1,6 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
+<%@ page import="com.truesculpt.onlinelibrary.Index" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.lang.Integer" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -71,9 +72,9 @@
 	     int nMaxRowCount=2;
 	     int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
 	     int nMaxPageCount=nFileCount/nMaxElemPerPage;          
-	     int nCurrPage=nPageNumber;
-	     if (nCurrPage>nMaxPageCount) { nCurrPage=nMaxPageCount; }
-	     if (nCurrPage<0) { nCurrPage=0; }
+	     int nCurrPage=Index.saturatePageNumber(nPageNumber,nMaxPageCount);
+		 int nPrevPage=Index.saturatePageNumber(nPageNumber-1,nMaxPageCount);
+		 int nNextPage=Index.saturatePageNumber(nPageNumber+1,nMaxPageCount);
          if ( nFileCount > 0) {%>
          <TABLE>
          <%for (int i = 0; i < nMaxRowCount; i++) {%>
@@ -100,9 +101,13 @@
       <% } %>
       <br>
       <a href="/?page=<%=0%>"><<</a>
-      <a href="/?page=<%=nPageNumber-1%>"><</a>
-      ...
-      <a href="/?page=<%=nPageNumber+1%>">></a>
+      <a href="/?page=<%=nPrevPage%>"><</a>
+      
+        <%for (int iPage = nPrevPage; iPage <= nNextPage; iPage++) {%>
+     		 <a href="/?page=<%=iPage%>"><%=iPage+1%></a>
+        <% } %>
+      
+      <a href="/?page=<%=nNextPage%>">></a>
       <a href="/?page=<%=nMaxPageCount%>">>></a>
    </div>
     
