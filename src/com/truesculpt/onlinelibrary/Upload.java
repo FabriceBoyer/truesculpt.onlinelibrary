@@ -45,6 +45,13 @@ public class Upload extends HttpServlet
 		req.setAttribute("uploadURL", uploadURL);
 		req.setAttribute("authURL", authURL);
 		req.setAttribute("user", user);
+		
+		String title=req.getParameter("title");
+		if (title==null) title="MySculpture";
+		String file=req.getParameter("file");
+		if (file==null) file="";	
+		req.setAttribute("title", title);
+		req.setAttribute("file", file);
 
 		RequestDispatcher dispatcher = req
 				.getRequestDispatcher("WEB-INF/templates/upload.jsp");
