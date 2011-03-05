@@ -53,8 +53,13 @@ public class Upload extends HttpServlet
 		req.setAttribute("title", title);
 		req.setAttribute("file", file);
 
+        resp.setContentType("text/plain");
+        resp.getWriter().println(uploadURL);
+        
+		/*
 		RequestDispatcher dispatcher = req
 				.getRequestDispatcher("WEB-INF/templates/upload.jsp");
 		dispatcher.forward(req, resp);
+		*/
 	}
 }
