@@ -1,3 +1,4 @@
+pushd %~dp0%
 hg status
 hg pull 
 hg update
