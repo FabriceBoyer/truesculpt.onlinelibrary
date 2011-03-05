@@ -40,8 +40,8 @@ public class UploadPost extends HttpServlet
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
+		//UserService userService = UserServiceFactory.getUserService();
+		//User user = userService.getCurrentUser();
 
 		Map<String, BlobKey> blobs = blobstoreService.getUploadedBlobs(req);
 		if (blobs.keySet().isEmpty())
@@ -54,12 +54,14 @@ public class UploadPost extends HttpServlet
 		String blobName = names.next();
 		BlobKey blobKey = blobs.get(blobName);
 
+		/*
 		if (user == null)
 		{
 			blobstoreService.delete(blobKey);
 			resp.sendRedirect("/?error="+ URLEncoder.encode("Must be logged in to upload","UTF-8"));
 			return;
 		}
+		*/
 
 		BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
 		BlobInfo blobInfo = blobInfoFactory.loadBlobInfo(blobKey);
@@ -74,7 +76,7 @@ public class UploadPost extends HttpServlet
 
 		try
 		{
-			MediaObject mediaObj = new MediaObject(user, blobKey, creation,
+			MediaObject mediaObj = new MediaObject(null, blobKey, creation,
 					contentType, fileName, size, title, description);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
 			resp.sendRedirect("/");

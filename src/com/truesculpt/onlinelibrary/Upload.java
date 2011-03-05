@@ -36,23 +36,25 @@ public class Upload extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException
 	{
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
+		//UserService userService = UserServiceFactory.getUserService();
+		//User user = userService.getCurrentUser();
 
-		String authURL = userService.createLogoutURL("/");
+		//String authURL = userService.createLogoutURL("/");
 		String uploadURL = blobstoreService.createUploadUrl("/post");
 
-		req.setAttribute("uploadURL", uploadURL);
-		req.setAttribute("authURL", authURL);
-		req.setAttribute("user", user);
+		//req.setAttribute("uploadURL", uploadURL);
+		//req.setAttribute("authURL", authURL);
+		//req.setAttribute("user", user);
 		
+		/*
 		String title=req.getParameter("title");
 		if (title==null) title="MySculpture";
 		String file=req.getParameter("file");
 		if (file==null) file="";	
 		req.setAttribute("title", title);
 		req.setAttribute("file", file);
-
+		 */
+		
         resp.setContentType("text/plain");
         resp.getWriter().println(uploadURL);
         
