@@ -12,7 +12,6 @@
   { 
    nPageNumber=Integer.parseInt(strPage);
   }
-  boolean noNavigation=request.getParameter("noNavigation")!=null;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
@@ -51,50 +50,48 @@
        
       <% List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
 	     int nFileCount=files.size();
-	     int nMaxColCount=2;
 	     int nMaxRowCount=5;
-	     int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
+	     int nMaxElemPerPage=nMaxRowCount;
 	     int nMaxPageCount=nFileCount/nMaxElemPerPage;          
 	     int nCurrPage=Index.saturatePageNumber(nPageNumber,nMaxPageCount);
 		 int nPrevPage=Index.saturatePageNumber(nPageNumber-1,nMaxPageCount);
 		 int nNextPage=Index.saturatePageNumber(nPageNumber+1,nMaxPageCount);
+		 
          if ( nFileCount > 0) {%>
-         <TABLE width="100%" align="center">
          <%for (int i = 0; i < nMaxRowCount; i++) {%>
-            <TR>
-             <% for (int j = 0; j < nMaxColCount; j++) { %>
-               <TD align="center">
-                  <% int index=nCurrPage*nMaxElemPerPage+i*nMaxColCount+j; 
-                    if (index<nFileCount && index>=0) { %>
-	                <%  MediaObject item = files.get(index); %>				    
-	                <a href="<%=item.getDisplayURL()%>"> 
-	                <img src="<%= item.getImageThumbnailURL() %>">
-	                </a>       
-	                <br>       
-	                <c:set var="title" value="<%= item.getTitle() %>"/>
-    				${fn:escapeXml(title)}<br>
-	                </TD>
-	             <% } %>
-             <% } %>
-             </TR>
+
+            <% int index=nCurrPage*nMaxElemPerPage+i; 
+            if (index<nFileCount && index>=0) { %>
+            
+            <%  MediaObject item = files.get(index); %>		
+            		    
+            <a href="<%=item.getDisplayURL()%>"> 
+            <img src="<%= item.getImageThumbnailURL() %>">
+            </a>       
+            <br>       
+            <c:set var="title" value="<%= item.getTitle() %>"/>
+			${fn:escapeXml(title)}
+			<br>
+	             
+            <% } %>
+
          <% } %>
-        </TABLE>
-        <%} else { %>
+         
+       <%} else { %>
             No media found.
       <% } %>
       <br>
-      
-      <%if (!noNavigation) { %>
-	      <a href="/?page=<%=0%>"><<</a>&nbsp&nbsp
-	      <a href="/?page=<%=nPrevPage%>"><</a>&nbsp&nbsp
-	      
-	        <%for (int iPage = nPrevPage; iPage <= nNextPage; iPage++) {%>
-	     		 <a href="/?page=<%=iPage%>"><%=iPage+1%></a>&nbsp&nbsp
-	        <% } %>
-	      
-	      <a href="/?page=<%=nNextPage%>">></a>&nbsp&nbsp
-	      <a href="/?page=<%=nMaxPageCount%>">>></a>&nbsp&nbsp
-      <% } %>
+  
+	    <a href="/?page=<%=nPrevPage%>"> 
+        <img src="/images/prev.png">
+        </a>  
+       
+       &nbsp page <%=nCurrPage%>&nbsp
+         
+	   <a href="/?page=<%=nNextPage%>"> 
+        <img src="/images/next.png">
+        </a>  
+	    <br>
       
    </div> 
  
