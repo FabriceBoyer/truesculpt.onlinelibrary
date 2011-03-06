@@ -14,7 +14,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 @SuppressWarnings("serial")
-public class Display extends HttpServlet
+public class Object extends HttpServlet
 {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException, ServletException
 	{
@@ -34,9 +34,6 @@ public class Display extends HttpServlet
 			return;
 		}
 	
-		req.setAttribute("item", result);
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/display.jsp");
-		dispatcher.forward(req, resp);
+		result.serveObject(resp);	
 	}
 }

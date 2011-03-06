@@ -21,6 +21,10 @@
     <servlet-name>display</servlet-name>
     <servlet-class>com.truesculpt.onlinelibrary.Display</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>object</servlet-name>
+    <servlet-class>com.truesculpt.onlinelibrary.Object</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
@@ -37,6 +41,10 @@
   <servlet-mapping>
     <servlet-name>display</servlet-name>
     <url-pattern>/display</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>object</servlet-name>
+    <url-pattern>/object</url-pattern>
   </servlet-mapping>
 
 </web-app>

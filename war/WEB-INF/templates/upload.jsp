@@ -31,7 +31,8 @@
     Title: <input type="text" size="40" name="title" value="MySculpture"><br>
     Description:<br>
     <textarea cols="80" rows="10" name="description" ></textarea><br>
-    Upload File: <input type="file" name="file" ><br>
+    Upload Image file: <input type="file" name="imagefile" ><br>
+    Upload Object file: <input type="file" name="objectfile" ><br>
     <input type="submit" name="submit" value="Submit">
   </form>
 </div>

@@ -14,6 +14,7 @@
  */
 package com.truesculpt.onlinelibrary;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -23,9 +24,13 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.users.User;
@@ -42,15 +47,12 @@ public class MediaObject
 
 	@Persistent
 	private BlobKey blob;
+	
+	@Persistent
+	private BlobKey objectBlob;
 
 	@Persistent
 	private Date creation;
-
-	@Persistent
-	private String contentType;
-
-	@Persistent
-	private String filename;
 
 	@Persistent
 	private long size;
@@ -64,17 +66,14 @@ public class MediaObject
 	private static final List<String> IMAGE_TYPES = Arrays.asList("image/png",
 			"image/jpeg", "image/tiff", "image/gif", "image/bmp");
 
-	public MediaObject(User owner, BlobKey blob, Date creationTime,
-			String contentType, String filename, long size, String title,
-			String description)
+	public MediaObject(User owner, BlobKey imageBlob, BlobKey objectBlob, Date creationTime,
+					   long objectSize, String title, String description)
 	{
-
-		this.blob = blob;
+		this.blob = imageBlob;
+		this.objectBlob=objectBlob;
 		this.owner = owner;
 		this.creation = creationTime;
-		this.contentType = contentType;
-		this.filename = filename;
-		this.size = size;
+		this.size = objectSize;
 		this.title = title;
 		this.description = description;
 	}
@@ -104,32 +103,24 @@ public class MediaObject
 		return title;
 	}
 
-	public String getFilename()
-	{
-		return filename;
-	}
-
-	public long getSize()
+	public long getObjectSize()
 	{
 		return size;
 	}
 
-	public String getContentType()
+	public void serveObject(HttpServletResponse resp) throws IOException
 	{
-		if (contentType == null)
-		{
-			return "text/plain";
-		}
-		return contentType;
+		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+		blobstoreService.serve(objectBlob, resp);
 	}
-
-	public String getURLPath()
+	
+	public String getImageURLPath()
 	{
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 		return imagesService.getServingUrl(blob);
 	}
 
-	public String getThumbnailURLPath()
+	public String getImageThumbnailURLPath()
 	{
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 		return imagesService.getServingUrl(blob, 200, false);
@@ -137,12 +128,13 @@ public class MediaObject
 
 	public String getDisplayURL()
 	{
-		String key = blob.getKeyString();
-		return "/display?key=" + key;
+		String strKey = KeyFactory.keyToString(key);
+		return "/display?key=" + strKey;
 	}
-
-	public boolean isImage()
+	
+	public String getObjectURL()
 	{
-		return IMAGE_TYPES.contains(getContentType());
+		String strKey = KeyFactory.keyToString(key);
+		return "/object?key=" + strKey;
 	}
 }

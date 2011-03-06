@@ -1,24 +1,8 @@
-/* Copyright (c) 2009 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.truesculpt.onlinelibrary;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -26,19 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
-import com.google.appengine.api.datastore.Blob;
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 
 @SuppressWarnings("serial")
 public class UploadPost extends HttpServlet
@@ -54,28 +30,28 @@ public class UploadPost extends HttpServlet
 			return;
 		}
 
-		BlobKey blobKey = blobs.get("file");
+		BlobKey objectBlobKey = blobs.get("objectfile");		
+		BlobKey imageBlobKey = blobs.get("imagefile");
 
 		BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
-		BlobInfo blobInfo = blobInfoFactory.loadBlobInfo(blobKey);
+		BlobInfo objectBlobInfo = blobInfoFactory.loadBlobInfo(objectBlobKey);
 
-		String contentType = blobInfo.getContentType();
-		long size = blobInfo.getSize();
-		Date creation = blobInfo.getCreation();
-		String fileName = blobInfo.getFilename();
+		long objectsize = objectBlobInfo.getSize();
+		Date creationDate = objectBlobInfo.getCreation();
 
 		String title = req.getHeader("title");
 		String description = req.getHeader("description");
 
 		try
 		{
-			MediaObject mediaObj = new MediaObject(null, blobKey, creation,	contentType, fileName, size, title, description);
+			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
 			resp.sendRedirect("/");
 		}
 		catch (Exception e)
 		{
-			blobstoreService.delete(blobKey);
+			blobstoreService.delete(objectBlobKey);
+			blobstoreService.delete(imageBlobKey);
 			resp.sendRedirect("/?error="+ URLEncoder.encode("Object save failed: " + e.getMessage(), "UTF-8"));
 		}
 	}

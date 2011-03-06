@@ -20,6 +20,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>TrueSculpt</title>
     
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
@@ -67,7 +68,7 @@
                     if (index<nFileCount && index>=0) { %>
 	                <%  MediaObject item = files.get(index); %>				    
 	                <a href="<%=item.getDisplayURL()%>"> 
-	                <img src="<%= item.getThumbnailURLPath() %>">
+	                <img src="<%= item.getImageThumbnailURLPath() %>">
 	                </a>       
 	                <br>       
 	                <c:set var="title" value="<%= item.getTitle() %>"/>
