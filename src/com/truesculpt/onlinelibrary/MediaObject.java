@@ -123,7 +123,7 @@ public class MediaObject
 	public String getImageThumbnailURL()
 	{
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
-		return imagesService.getServingUrl(blob, 250, false);
+		return imagesService.getServingUrl(blob, 180, false);
 	}
 
 	public String getDisplayURL()

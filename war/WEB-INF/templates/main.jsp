@@ -50,7 +50,7 @@
        
       <% List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
 	     int nFileCount=files.size();
-	     int nMaxRowCount=5;
+	     int nMaxRowCount=10;
 	     int nMaxElemPerPage=nMaxRowCount;
 	     int nMaxPageCount=nFileCount/(nMaxElemPerPage+1);          
 	     int nCurrPage=Index.saturatePageNumber(nPageNumber,nMaxPageCount);
