@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>TrueSculpt viewer</title>
   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
      <script type="text/javascript">
@@ -38,10 +38,9 @@
 	</script>
 
 	<div align="center">
-		 <a href="<%= item.getObjectURL()%>">
-	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid(<%= item.getTitle() %>, <%= item.getImageURL()%>,<%= item.getObjectURL()%>)"><br>
-	     </a>
-	     
+		
+	     <img src="<%= item.getImageURL()%>" width="100%" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>
+	          
 	     <c:set var="title" value="<%= item.getTitle() %>"/>
 	     ${fn:escapeXml(title)}<br>
 	     
@@ -50,7 +49,9 @@
 	     
 		 <%=item.getObjectSize()/1000%> ko<br>
 		 
-	     <%=item.getCreationTime()%><br>     
+	     <%=item.getCreationTime()%><br>
+	     
+	     <a href="<%= item.getObjectURL()%>">download</a>     
 	</div>
   
    <br>

@@ -20,7 +20,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>TrueSculpt</title>
     
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
@@ -59,7 +59,7 @@
 		 int nPrevPage=Index.saturatePageNumber(nPageNumber-1,nMaxPageCount);
 		 int nNextPage=Index.saturatePageNumber(nPageNumber+1,nMaxPageCount);
          if ( nFileCount > 0) {%>
-         <TABLE>
+         <TABLE width="100%">
          <%for (int i = 0; i < nMaxRowCount; i++) {%>
             <TR>
              <% for (int j = 0; j < nMaxColCount; j++) { %>
