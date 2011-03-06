@@ -6,11 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-  User user = (User) request.getAttribute("user");
-  String authURL = (String) request.getAttribute("authURL");
   String strPage= (String) request.getParameter("page");
   Integer nPageNumber= 0;
-  if (strPage!=null) { 
+  if (strPage!=null) 
+  { 
    nPageNumber=Integer.parseInt(strPage);
   }
 %>
@@ -39,31 +38,17 @@
 
   </head>
   <body>
-    <div align="right">
-      <%
-        if (user != null) {
-      %>
-        <%= user.getNickname() %>
-      <% } %>
-
-      <a href="<%= authURL %>">
-        <% if (user != null) { %>Log out<% } else  { %>Log in<% } %>
-      </a>
-    </div>
-
-      <ul>
-        <% 
-           String[] errors = (String[]) request.getAttribute("errors");
-           for (int i = 0; i < errors.length; i++) { %>
-          <li style="color: red"><%= errors[i]%></li>
-        <% } %>
-      </ul>
+  
+  <ul>
+    <% 
+       String[] errors = (String[]) request.getAttribute("errors");
+       for (int i = 0; i < errors.length; i++) { %>
+      <li style="color: red"><%= errors[i]%></li>
+    <% } %>
+  </ul>
 
 	<div align="center">
-       TrueSculpt online library  
-        
-       <br>
-       <br>
+       TrueSculpt online library <br>
        
       <%
          List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
@@ -100,15 +85,15 @@
             No media found.
       <% } %>
       <br>
-      <a href="/?page=<%=0%>"><<</a>
-      <a href="/?page=<%=nPrevPage%>"><</a>
+      <a href="/?page=<%=0%>"><<&nbsp</a>
+      <a href="/?page=<%=nPrevPage%>"><&nbsp</a>
       
         <%for (int iPage = nPrevPage; iPage <= nNextPage; iPage++) {%>
-     		 <a href="/?page=<%=iPage%>"><%=iPage+1%></a>
+     		 <a href="/?page=<%=iPage%>"><%=iPage+1%>&nbsp</a>
         <% } %>
       
-      <a href="/?page=<%=nNextPage%>">></a>
-      <a href="/?page=<%=nMaxPageCount%>">>></a>
+      <a href="/?page=<%=nNextPage%>">>&nbsp</a>
+      <a href="/?page=<%=nMaxPageCount%>">>>&nbsp</a>
    </div> 
  
   </body>

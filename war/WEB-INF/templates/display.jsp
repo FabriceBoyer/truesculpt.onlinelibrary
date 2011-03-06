@@ -6,10 +6,6 @@
   "http://www.w3.org/TR/html4/strict.dtd">
 <%
   MediaObject item = (MediaObject) request.getAttribute("item");
-  User user = (User) request.getAttribute("user");
-  String authURL = (String) request.getAttribute("authURL");
-  String displayURL = (String) request.getAttribute("displayURL");
-  String blobkey = (String) request.getAttribute("blobkey");
 %>
 <html lang="en">
 <head>
@@ -31,23 +27,12 @@
 	</script>
 </head>
 <body>
-<div align="right">
-    <%
-      if (user != null) {
-    %>
-     <%= user.getNickname() %>
-    <% } %>
 
-    <a href="<%= authURL %>">
-      <% if (user != null) { %>Log out<% } else  { %>Log in<% } %>
-    </a>
-</div>
-<br>
 <div align="center">
-     <a href="javascript:javascript:history.go(-1)"><img src="<%= displayURL %>"></a><br>
+     <a href="javascript:javascript:history.go(-1)"><img src="<%= item.getURLPath() %>"></a><br>
      
-     <c:set var="filename" value="<%= item.getFilename() %>"/>
-     ${fn:escapeXml(filename)}<br>
+     <c:set var="title" value="<%= item.getTitle() %>"/>
+     ${fn:escapeXml(title)}<br>
      
      <c:set var="description" value="<%= item.getDescription() %>"/>
      ${fn:escapeXml(description)}<br>

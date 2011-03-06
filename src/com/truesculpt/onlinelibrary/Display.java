@@ -34,8 +34,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 @SuppressWarnings("serial")
 public class Display extends HttpServlet
 {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException, ServletException
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException, ServletException
 	{
 		String blobKeyString = req.getParameter("key");
 		if (blobKeyString == null || blobKeyString.equals(""))
@@ -58,19 +57,9 @@ public class Display extends HttpServlet
 			return;
 		}
 
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-
 		MediaObject result = results.get(0);
-
-		String displayURL = result.getURLPath();
-		String authURL = (user != null) ? userService.createLogoutURL("/") : userService.createLoginURL("/");
-
-		req.setAttribute("displayURL", displayURL);
-		req.setAttribute("authURL", authURL);
-		req.setAttribute("user", user);
+	
 		req.setAttribute("item", result);
-		req.setAttribute("blobkey", blobKeyString);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/display.jsp");
 		dispatcher.forward(req, resp);
