@@ -52,7 +52,7 @@
 	     int nFileCount=files.size();
 	     int nMaxRowCount=5;
 	     int nMaxElemPerPage=nMaxRowCount;
-	     int nMaxPageCount=nFileCount/nMaxElemPerPage;          
+	     int nMaxPageCount=nFileCount/(nMaxElemPerPage+1);          
 	     int nCurrPage=Index.saturatePageNumber(nPageNumber,nMaxPageCount);
 		 int nPrevPage=Index.saturatePageNumber(nPageNumber-1,nMaxPageCount);
 		 int nNextPage=Index.saturatePageNumber(nPageNumber+1,nMaxPageCount);
@@ -72,6 +72,7 @@
             <c:set var="title" value="<%= item.getTitle() %>"/>
 			${fn:escapeXml(title)}
 			<br>
+			<br>
 	             
             <% } %>
 
@@ -82,17 +83,21 @@
       <% } %>
       <br>
   
+  		<% if (nPrevPage!=nCurrPage) { %>
 	    <a href="/?page=<%=nPrevPage%>"> 
         <img src="/images/prev.png">
         </a>  
-       
+        <% } %>
+        
        &nbsp page <%=nCurrPage%>&nbsp
          
-	   <a href="/?page=<%=nNextPage%>"> 
+        <% if (nNextPage!=nCurrPage) { %>
+	    <a href="/?page=<%=nNextPage%>"> 
         <img src="/images/next.png">
         </a>  
-	    <br>
-      
+	    <% } %>
+
+		<br>      
    </div> 
  
   </body>

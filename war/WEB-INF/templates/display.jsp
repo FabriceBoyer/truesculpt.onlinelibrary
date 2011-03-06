@@ -37,19 +37,23 @@
 
 	<div align="center">
 		
+		Click on image to import it into your library <br><br>
+		
 	     <img src="<%= item.getImageURL()%>" width="100%" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>
 	          
 	     <c:set var="title" value="<%= item.getTitle() %>"/>
 	     ${fn:escapeXml(title)}<br>
 	     
+	     <!--
 	     <c:set var="description" value="<%= item.getDescription() %>"/>
 	     ${fn:escapeXml(description)}<br>
+	     -->
 	     
 		 <%=item.getObjectSize()/1000%> ko<br>
 		 
 	     <%=item.getCreationTime()%><br>
 	     
-	     <a href="<%= item.getObjectURL()%>">download</a>     
+	     <a href="<%= item.getObjectURL()%>">download as obj file</a>     
 	</div>
   
    <br>
