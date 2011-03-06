@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=yes">
   <title>TrueSculpt viewer</title>
   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
      <script type="text/javascript">
@@ -27,30 +27,33 @@
 	
 	</script>
 	
-	<script type="text/javascript">
-	    function openObjFileInAndroid(image, object) 
-	    {
-	        Android.openObjFileInAndroid(image, object);
-	    }
-	</script>
+
 </head>
 <body>
+	<script type="text/javascript">
+	    function openObjFileInAndroid(name, image, object) 
+	    {
+	        Android.openObjFileInAndroid(name, image, object);
+	    }
+	</script>
 
-<div align="center">
-     <img src="<%= item.getImageURLPath()%>" onClick="openObjFileInAndroid(item.getImageURLPath(),item.getObjectURLPath())"><br>
-     
-     <c:set var="title" value="<%= item.getTitle() %>"/>
-     ${fn:escapeXml(title)}<br>
-     
-     <c:set var="description" value="<%= item.getDescription() %>"/>
-     ${fn:escapeXml(description)}<br>
-     
-	 <%=item.getObjectSize()/1000%> ko<br>
-	 
-     <%=item.getCreationTime()%><br>     
-</div>
+	<div align="center">
+		 <a href="<%= item.getObjectURL()%>">
+	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid(<%= item.getTitle() %>, <%= item.getImageURL()%>,<%= item.getObjectURL()%>)"><br>
+	     </a>
+	     
+	     <c:set var="title" value="<%= item.getTitle() %>"/>
+	     ${fn:escapeXml(title)}<br>
+	     
+	     <c:set var="description" value="<%= item.getDescription() %>"/>
+	     ${fn:escapeXml(description)}<br>
+	     
+		 <%=item.getObjectSize()/1000%> ko<br>
+		 
+	     <%=item.getCreationTime()%><br>     
+	</div>
   
    <br>
-  <a href="javascript:javascript:history.go(-1)">Back</a>
+   <a href="javascript:javascript:history.go(-1)">Back</a>
 </body>
 </html>

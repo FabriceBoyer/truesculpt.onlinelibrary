@@ -114,13 +114,13 @@ public class MediaObject
 		blobstoreService.serve(objectBlob, resp);
 	}
 	
-	public String getImageURLPath()
+	public String getImageURL()
 	{
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 		return imagesService.getServingUrl(blob);
 	}
 
-	public String getImageThumbnailURLPath()
+	public String getImageThumbnailURL()
 	{
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 		return imagesService.getServingUrl(blob, 200, false);

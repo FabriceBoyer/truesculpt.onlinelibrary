@@ -20,7 +20,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=yes">
     <title>TrueSculpt</title>
     
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
@@ -51,8 +51,8 @@
        
       <% List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
 	     int nFileCount=files.size();
-	     int nMaxColCount=3;
-	     int nMaxRowCount=2;
+	     int nMaxColCount=2;
+	     int nMaxRowCount=5;
 	     int nMaxElemPerPage=nMaxRowCount*nMaxColCount;
 	     int nMaxPageCount=nFileCount/nMaxElemPerPage;          
 	     int nCurrPage=Index.saturatePageNumber(nPageNumber,nMaxPageCount);
@@ -68,7 +68,7 @@
                     if (index<nFileCount && index>=0) { %>
 	                <%  MediaObject item = files.get(index); %>				    
 	                <a href="<%=item.getDisplayURL()%>"> 
-	                <img src="<%= item.getImageThumbnailURLPath() %>">
+	                <img src="<%= item.getImageThumbnailURL() %>">
 	                </a>       
 	                <br>       
 	                <c:set var="title" value="<%= item.getTitle() %>"/>
@@ -85,15 +85,15 @@
       <br>
       
       <%if (!noNavigation) { %>
-	      <a href="/?page=<%=0%>"><<</a>&nbsp
-	      <a href="/?page=<%=nPrevPage%>"><</a>&nbsp
+	      <a href="/?page=<%=0%>"><<</a>&nbsp&nbsp
+	      <a href="/?page=<%=nPrevPage%>"><</a>&nbsp&nbsp
 	      
 	        <%for (int iPage = nPrevPage; iPage <= nNextPage; iPage++) {%>
-	     		 <a href="/?page=<%=iPage%>"><%=iPage+1%></a>&nbsp
+	     		 <a href="/?page=<%=iPage%>"><%=iPage+1%></a>&nbsp&nbsp
 	        <% } %>
 	      
-	      <a href="/?page=<%=nNextPage%>">></a>&nbsp
-	      <a href="/?page=<%=nMaxPageCount%>">>></a>&nbsp
+	      <a href="/?page=<%=nNextPage%>">></a>&nbsp&nbsp
+	      <a href="/?page=<%=nMaxPageCount%>">>></a>&nbsp&nbsp
       <% } %>
       
    </div> 
