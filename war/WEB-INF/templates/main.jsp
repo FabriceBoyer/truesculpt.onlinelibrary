@@ -6,12 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-  String strPage= (String) request.getParameter("page");
-  Integer nPageNumber= 0;
-  if (strPage!=null) 
-  { 
-   nPageNumber=Integer.parseInt(strPage);
-  }
+       List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
+       Integer nCurrPage=(Integer) request.getAttribute("page");
+       Boolean bShowNext=(Boolean) request.getAttribute("shownext");
+       Boolean bShowPrev=(Boolean) request.getAttribute("showprev");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
@@ -46,24 +44,13 @@
     <% } %>
   </ul>
 
-	<div align="center">
-       
-      <% List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
-	     int nFileCount=files.size();
-	     int nMaxRowCount=10;
-	     int nMaxElemPerPage=nMaxRowCount;
-	     int nMaxPageCount=nFileCount/(nMaxElemPerPage+1);          
-	     int nCurrPage=Index.saturatePageNumber(nPageNumber,nMaxPageCount);
-		 int nPrevPage=Index.saturatePageNumber(nPageNumber-1,nMaxPageCount);
-		 int nNextPage=Index.saturatePageNumber(nPageNumber+1,nMaxPageCount);
-		 
-         if ( nFileCount > 0) {%>
-         <%for (int i = 0; i < nMaxRowCount; i++) {%>
+	<div align="center">       
 
-            <% int index=nCurrPage*nMaxElemPerPage+i; 
-            if (index<nFileCount && index>=0) { %>
+	    <% int nFileCount=files.size();		 
+         if ( nFileCount > 0) {%>
+         <%for (int i = 0; i < nFileCount; i++) {%>         
             
-            <%  MediaObject item = files.get(index); %>		
+            <%  MediaObject item = files.get(i); %>		
             		    
             <a href="<%=item.getDisplayURL()%>"> 
             <img src="<%= item.getImageThumbnailURL() %>">
@@ -72,9 +59,7 @@
             <c:set var="title" value="<%= item.getTitle() %>"/>
 			${fn:escapeXml(title)}
 			<br>
-			<br>
-	             
-            <% } %>
+			<br>      
 
          <% } %>
          
@@ -83,16 +68,16 @@
       <% } %>
       <br>
   
-  		<% if (nPrevPage!=nCurrPage) { %>
-	    <a href="/?page=<%=nPrevPage%>"> 
+  		<% if (bShowPrev) { %>
+	    <a href="/?page=<%=nCurrPage-1%>"> 
         <img src="/images/prev.png">
         </a>  
         <% } %>
         
        &nbsp Page <%=nCurrPage%>&nbsp
          
-        <% if (nNextPage!=nCurrPage) { %>
-	    <a href="/?page=<%=nNextPage%>"> 
+        <% if (bShowNext) { %>
+	    <a href="/?page=<%=nCurrPage+1%>"> 
         <img src="/images/next.png">
         </a>  
 	    <% } %>
@@ -102,7 +87,9 @@
 		<br> 
 		<br>   
 		
-		 All the sculptures of this site are licensed under the terms of the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a> 
+		 All the sculptures of this site are licensed under the terms of the<br>
+		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br>
+		  
    </div> 
  
   </body>

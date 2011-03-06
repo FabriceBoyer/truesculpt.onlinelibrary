@@ -17,8 +17,21 @@ public class Index extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException, ServletException
 	{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		
+		  String strPage= req.getParameter("page");
+		  Integer nPageNumber= 0;
+		  if (strPage!=null) 
+		  { 
+		   nPageNumber=Integer.parseInt(strPage);
+		  }
+		  
+	     int nElemsPerPage=10;
+	     int nCurrPage=Index.saturatePageNumber(nPageNumber);
+		 
+		 int start=nCurrPage*nElemsPerPage;
+		 int stop=start+nElemsPerPage;
 
-		String strquery = "select from " + MediaObject.class.getName() + " order by creation desc range 0,100";
+		String strquery = "select from " + MediaObject.class.getName() + " order by creation desc range "+ start+","+stop;
 		Query query = pm.newQuery(strquery);
 
 		List<MediaObject> results = (List<MediaObject>) query.execute();
@@ -28,14 +41,16 @@ public class Index extends HttpServlet
 
 		req.setAttribute("errors", errors);
 		req.setAttribute("files", results);
+		req.setAttribute("page", nCurrPage);
+		req.setAttribute("shownext", results.size()==nElemsPerPage);
+		req.setAttribute("showprev", nCurrPage!=0);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/main.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
-	public static int saturatePageNumber(int page, int nMaxPageCount)
+	public static int saturatePageNumber(int page)
 	{
 	  int nRes=page;
-	  if (page>nMaxPageCount) { nRes=nMaxPageCount; }
 	  if (page<0) { nRes=0; }
 	  return nRes;
 	}
