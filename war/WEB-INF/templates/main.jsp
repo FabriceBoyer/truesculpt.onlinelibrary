@@ -59,11 +59,11 @@
 		 int nPrevPage=Index.saturatePageNumber(nPageNumber-1,nMaxPageCount);
 		 int nNextPage=Index.saturatePageNumber(nPageNumber+1,nMaxPageCount);
          if ( nFileCount > 0) {%>
-         <TABLE width="100%">
+         <TABLE width="100%" align="center">
          <%for (int i = 0; i < nMaxRowCount; i++) {%>
             <TR>
              <% for (int j = 0; j < nMaxColCount; j++) { %>
-               <TD>
+               <TD align="center">
                   <% int index=nCurrPage*nMaxElemPerPage+i*nMaxColCount+j; 
                     if (index<nFileCount && index>=0) { %>
 	                <%  MediaObject item = files.get(index); %>				    

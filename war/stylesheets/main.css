@@ -2,3 +2,8 @@ body {
     font-family: Verdana, Helvetica, sans-serif;
     background-color: #FFFFFF;
 }
+table {
+	max-width:expression(document.body.clientWidth);
+	min-width:0px;
+	word-wrap:break-word
+}
