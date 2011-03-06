@@ -53,10 +53,17 @@
 		 
 	     <%=item.getCreationTime()%><br>
 	     
-	     <a href="<%= item.getObjectURL()%>">download as obj file</a>     
+	     <a href="<%= item.getObjectURL()%>">download as obj file</a>   <br> 
+	     
+	     <br>
+	     <br>
+	     licensed under the terms of the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a>  
+	     
+	     <br>
+	     <br>
+   		<a href="javascript:javascript:history.go(-1)">Go back</a>
 	</div>
   
-   <br>
-   <a href="javascript:javascript:history.go(-1)">Back</a>
+
 </body>
 </html>

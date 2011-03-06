@@ -89,7 +89,7 @@
         </a>  
         <% } %>
         
-       &nbsp page <%=nCurrPage%>&nbsp
+       &nbsp Page <%=nCurrPage%>&nbsp
          
         <% if (nNextPage!=nCurrPage) { %>
 	    <a href="/?page=<%=nNextPage%>"> 
@@ -97,7 +97,12 @@
         </a>  
 	    <% } %>
 
-		<br>      
+		<br>   
+		<br> 
+		<br> 
+		<br>   
+		
+		 All the sculptures of this site are licensed under the terms of the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a> 
    </div> 
  
   </body>
