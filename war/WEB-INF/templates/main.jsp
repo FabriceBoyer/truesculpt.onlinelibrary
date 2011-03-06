@@ -12,6 +12,7 @@
   { 
    nPageNumber=Integer.parseInt(strPage);
   }
+  boolean noNavigation=request.getParameter("noNavigation")!=null;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
@@ -48,7 +49,7 @@
   </ul>
 
 	<div align="center">
-       TrueSculpt online library <br>
+       <!--TrueSculpt online library <br>-->
        
       <%
          List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
@@ -85,15 +86,18 @@
             No media found.
       <% } %>
       <br>
-      <a href="/?page=<%=0%>"><<&nbsp</a>
-      <a href="/?page=<%=nPrevPage%>"><&nbsp</a>
       
-        <%for (int iPage = nPrevPage; iPage <= nNextPage; iPage++) {%>
-     		 <a href="/?page=<%=iPage%>"><%=iPage+1%>&nbsp</a>
-        <% } %>
-      
-      <a href="/?page=<%=nNextPage%>">>&nbsp</a>
-      <a href="/?page=<%=nMaxPageCount%>">>>&nbsp</a>
+      <%if (!noNavigation) { %>
+	      <a href="/?page=<%=0%>"><<</a>&nbsp
+	      <a href="/?page=<%=nPrevPage%>"><</a>&nbsp
+	      
+	        <%for (int iPage = nPrevPage; iPage <= nNextPage; iPage++) {%>
+	     		 <a href="/?page=<%=iPage%>"><%=iPage+1%></a>&nbsp
+	        <% } %>
+	      
+	      <a href="/?page=<%=nNextPage%>">></a>&nbsp
+	      <a href="/?page=<%=nMaxPageCount%>">>></a>&nbsp
+      <% } %>
    </div> 
  
   </body>
