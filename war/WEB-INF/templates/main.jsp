@@ -24,7 +24,6 @@
     
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
     <script type="text/javascript">
-
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-18915484-4']);
 	  _gaq.push(['_trackPageview']);
@@ -33,11 +32,10 @@
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	
+	  })();	
 	</script>
-
   </head>
+  
   <body>
   
   <ul>
@@ -49,10 +47,8 @@
   </ul>
 
 	<div align="center">
-       <!--TrueSculpt online library <br>-->
        
-      <%
-         List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
+      <% List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
 	     int nFileCount=files.size();
 	     int nMaxColCount=3;
 	     int nMaxRowCount=2;
@@ -98,6 +94,7 @@
 	      <a href="/?page=<%=nNextPage%>">></a>&nbsp
 	      <a href="/?page=<%=nMaxPageCount%>">>></a>&nbsp
       <% } %>
+      
    </div> 
  
   </body>
