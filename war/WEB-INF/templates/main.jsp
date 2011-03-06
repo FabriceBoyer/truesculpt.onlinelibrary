@@ -109,11 +109,7 @@
       
       <a href="/?page=<%=nNextPage%>">></a>
       <a href="/?page=<%=nMaxPageCount%>">>></a>
-   </div>
-    
-  <% if (user != null) { %>
-    <a href="/upload">Upload new media</a>
-  <% } %>      
+   </div> 
  
   </body>
 </html>

@@ -15,20 +15,27 @@
 package com.truesculpt.onlinelibrary;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -38,8 +45,50 @@ public class UploadPost extends HttpServlet
 {
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
+/*
+	  try 
+	  {
+	    ServletFileUpload upload = new ServletFileUpload();
+	    //resp.setContentType("text/plain");
+	
+		FileItemIterator iterator = upload.getItemIterator(req);
+		while (iterator.hasNext()) 
+		{
+		  FileItemStream item = iterator.next();
+		  InputStream stream = item.openStream();
+		
+		  if (item.isFormField()) 
+		  {
+		    //log.warning("Got a form field: " + item.getFieldName());
+		  } 
+		  else
+		  {	        	  
+		    //log.warning("Got an uploaded file: " + item.getFieldName() + ", name = " + item.getName());
+		  }
+		
+		  // You now have the filename (item.getName() and the
+		  // contents (which you can read from stream). Here we just
+		  // print them back out to the servlet output stream, but you
+		  // will probably want to do something more interesting (for
+		  // example, wrap them in a Blob and commit them to the
+		  // datastore).
+		  int len;
+		  byte[] buffer = new byte[8192];
+		  while ((len = stream.read(buffer, 0, buffer.length)) != -1)
+		  {
+		   	 Blob blob= new Blob(buffer);	
+		   	//resp.getOutputStream().write(buffer, 0, len);
+	      }
+	    }       
+	  } 
+	  catch (Exception ex)
+	  {
+	    throw new ServletException(ex);
+	  }
+*/
+	      
 		//UserService userService = UserServiceFactory.getUserService();
 		//User user = userService.getCurrentUser();
 
@@ -50,9 +99,9 @@ public class UploadPost extends HttpServlet
 			return;
 		}
 
-		Iterator<String> names = blobs.keySet().iterator();
-		String blobName = names.next();
-		BlobKey blobKey = blobs.get(blobName);
+		//Iterator<String> names = blobs.keySet().iterator();
+		//String blobName = names.next();
+		BlobKey blobKey = blobs.get("file");
 
 		/*
 		if (user == null)
@@ -71,7 +120,7 @@ public class UploadPost extends HttpServlet
 		Date creation = blobInfo.getCreation();
 		String fileName = blobInfo.getFilename();
 
-		String title = req.getParameter("title");
+		String title = req.getHeader("title");// req.getParameter("title");
 		String description = req.getParameter("description");
 
 		try
@@ -79,7 +128,7 @@ public class UploadPost extends HttpServlet
 			MediaObject mediaObj = new MediaObject(null, blobKey, creation,
 					contentType, fileName, size, title, description);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
-			resp.sendRedirect("/");
+			//resp.sendRedirect("/");
 		}
 		catch (Exception e)
 		{
