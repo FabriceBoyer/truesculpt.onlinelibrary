@@ -37,7 +37,7 @@
 
 	<div align="center">
 		
-		Click on image to import it into your library <br><br>
+		Click on image to import the sculpture into your library <br><br>
 		
 	     <img src="<%= item.getImageURL()%>" width="100%" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>
 	          
@@ -53,7 +53,7 @@
 		 
 	     <%=item.getCreationTime()%><br>
 	     
-	     <a href="<%= item.getObjectURL()%>">download as obj file</a>   <br> 
+	     <a href="<%= item.getObjectURL()%>">download as zipped obj file</a>   <br> 
 	     
 	     <br>
 	     <br>
