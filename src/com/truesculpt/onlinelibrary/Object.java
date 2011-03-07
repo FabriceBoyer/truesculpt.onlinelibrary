@@ -34,6 +34,9 @@ public class Object extends HttpServlet
 			return;
 		}
 	
-		result.serveObject(resp);	
+		result.incrementDownloadCount();
+		pm.close();
+		
+		result.serveObject(resp);		
 	}
 }

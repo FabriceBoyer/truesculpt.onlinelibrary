@@ -35,12 +35,21 @@ public class UploadPost extends HttpServlet
 
 		BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
 		BlobInfo objectBlobInfo = blobInfoFactory.loadBlobInfo(objectBlobKey);
+		BlobInfo imageBlobInfo = blobInfoFactory.loadBlobInfo(imageBlobKey);
 
-		long objectsize = objectBlobInfo.getSize();
+		Integer objectsize = (Integer)(int)(objectBlobInfo.getSize()+imageBlobInfo.getSize());
 		Date creationDate = objectBlobInfo.getCreation();
 
 		String title = req.getHeader("title");
+		if (title==null)
+		{
+			title=req.getParameter("title");
+		}
 		String description = req.getHeader("description");
+		if (description==null)
+		{
+			description=req.getParameter("description");
+		}
 
 		try
 		{

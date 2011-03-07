@@ -85,11 +85,11 @@
 		<br>   
 		<br> 
 		<br> 
-		<br>   
+		<br>   		
 		
-		 All the sculptures of this site are licensed under the terms of the<br>
-		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br>
-		  
+		 All the sculptures are licensed under the terms of the<br>
+		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br><br>
+		 TrueSculpt online library<br>
    </div> 
  
   </body>

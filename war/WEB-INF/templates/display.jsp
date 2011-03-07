@@ -39,7 +39,7 @@
 		
 		Click on image to import the sculpture into your library <br><br>
 		
-	     <img src="<%= item.getImageURL()%>" width="100%" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>
+	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>
 	          
 	     <c:set var="title" value="<%= item.getTitle() %>"/>
 	     ${fn:escapeXml(title)}<br>
@@ -53,15 +53,21 @@
 		 
 	     <%=item.getCreationTime()%><br>
 	     
-	     <a href="<%= item.getObjectURL()%>">download as zipped obj file</a>   <br> 
+	     Downloaded <%=item.getDownloadCount()%> times<br>
+	     
+	     <a href="<%= item.getObjectURL()%>">Download as zipped obj file</a>   
+	     <br>	     
+	     <br>
+   		 <a href="javascript:javascript:history.go(-1)">Go back</a>
 	     
 	     <br>
 	     <br>
-	     licensed under the terms of the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a>  
+	     <br>
+	     Licensed under the terms of the <br>
+	     <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a>  
 	     
 	     <br>
-	     <br>
-   		<a href="javascript:javascript:history.go(-1)">Go back</a>
+	    
 	</div>
   
 
