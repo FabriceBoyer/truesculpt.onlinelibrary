@@ -25,13 +25,34 @@ public class Index extends HttpServlet
 		   nPageNumber=Integer.parseInt(strPage);
 		  }
 		  
-	     int nElemsPerPage=10;
+		  int nElemsPerPage=10;
+		  String strElemsPerPage=req.getParameter("ElemsPerPage");	     
+	     if (strElemsPerPage!=null)
+	     {
+	    	 nElemsPerPage=Integer.parseInt(strElemsPerPage);
+	     }
+	     
 	     int nCurrPage=Index.saturatePageNumber(nPageNumber);
 		 
 		 int start=nCurrPage*nElemsPerPage;
 		 int stop=start+nElemsPerPage;
 
-		String strquery = "select from " + MediaObject.class.getName() + " order by creation desc range "+ start+","+stop;
+		 //creation or downloadCount
+		String strSortBy=req.getParameter("sortBy");
+		if (strSortBy==null)
+		{
+			strSortBy="creation";
+		}
+		
+		//asc or desc
+		String strOrderBy=req.getParameter("orderBy");
+		if (strOrderBy==null)
+		{
+			strOrderBy="desc";
+		}
+		String strquery = "select from " + MediaObject.class.getName() + " order by "+
+						  strSortBy+" "+strOrderBy+" range "+ start+","+stop;
+		
 		Query query = pm.newQuery(strquery);
 
 		List<MediaObject> results = (List<MediaObject>) query.execute();
@@ -44,6 +65,8 @@ public class Index extends HttpServlet
 		req.setAttribute("page", nCurrPage);
 		req.setAttribute("shownext", results.size()==nElemsPerPage);
 		req.setAttribute("showprev", nCurrPage!=0);
+	    req.setAttribute("sortBy",strSortBy);
+	    req.setAttribute("orderBy",strOrderBy);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/main.jsp");
 		dispatcher.forward(req, resp);
 	}

@@ -10,6 +10,8 @@
        Integer nCurrPage=(Integer) request.getAttribute("page");
        Boolean bShowNext=(Boolean) request.getAttribute("shownext");
        Boolean bShowPrev=(Boolean) request.getAttribute("showprev");
+       String sortBy=(String) request.getAttribute("sortBy");
+       String orderBy=(String) request.getAttribute("orderBy");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
@@ -45,6 +47,29 @@
   </ul>
 
 	<div align="center">       
+	
+	
+   <form action="" method="get" accept-charset="utf-8">
+    Order
+    <select name="orderBy" onchange="javascript:form.submit()" size="1">
+      <option <% if ("asc".equals(orderBy)) { %>selected<% } %> value="asc">Increasing</option>
+      <option <% if ("desc".equals(orderBy)) { %>selected<% } %> value="desc">Decreasing</option>
+    </select>
+    <input type="hidden" name="page" value="<%= nCurrPage %>">
+    <input type="hidden" name="sortBy" value="<%= sortBy %>">
+  </form>
+	<br> 
+  <form action="" method="get" accept-charset="utf-8">
+    Sort by
+    <select name="sortBy" onchange="javascript:form.submit()" size="1">
+      <option <% if ("creation".equals(sortBy)) { %>selected<% } %> value="creation">Date</option>
+      <option <% if ("downloadCount".equals(sortBy)) { %>selected<% } %> value="downloadCount">Download</option>
+    </select>
+    <input type="hidden" name="page" value="<%= nCurrPage %>">
+    <input type="hidden" name="orderBy" value="<%= orderBy %>">
+  </form>
+  <br> 
+	
 
 	    <% int nFileCount=files.size();		 
          if ( nFileCount > 0) {%>
@@ -69,15 +94,15 @@
       <br>
   
   		<% if (bShowPrev) { %>
-	    <a href="/?page=<%=nCurrPage-1%>"> 
+	    <a href="/?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>"> 
         <img src="/images/prev.png">
         </a>  
         <% } %>
         
-       &nbsp Page <%=nCurrPage%>&nbsp
+        &nbsp Page <%=nCurrPage+1%>&nbsp
          
         <% if (bShowNext) { %>
-	    <a href="/?page=<%=nCurrPage+1%>"> 
+	    <a href="/?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>"> 
         <img src="/images/next.png">
         </a>  
 	    <% } %>
@@ -87,9 +112,9 @@
 		<br> 
 		<br>   		
 		
-		 All the sculptures are licensed under the terms of the<br>
-		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br><br>
-		 TrueSculpt online library<br>
+		 All the sculptures fo the TrueSculpt online library are licensed under the terms of the<br>
+		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br>
+		 
    </div> 
  
   </body>
