@@ -112,7 +112,7 @@
 		<br> 
 		<br>   		
 		
-		 All the sculptures fo the TrueSculpt online library are licensed under the terms of the<br>
+		 All the sculptures of the TrueSculpt online library are licensed under the terms of the<br>
 		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br>
 		 
    </div> 
