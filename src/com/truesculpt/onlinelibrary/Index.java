@@ -39,14 +39,16 @@ public class Index extends HttpServlet
 
 		 //creation or downloadCount
 		String strSortBy=req.getParameter("sortBy");
-		if (strSortBy==null)
+		if ((strSortBy==null)|| 
+			(!(strSortBy.equals("creation")||strSortBy.equals("downloadCount"))))
 		{
 			strSortBy="creation";
 		}
 		
 		//asc or desc
 		String strOrderBy=req.getParameter("orderBy");
-		if (strOrderBy==null)
+		if ((strOrderBy==null) ||
+			(!(strOrderBy.equals("asc")||strOrderBy.equals("desc"))))
 		{
 			strOrderBy="desc";
 		}
