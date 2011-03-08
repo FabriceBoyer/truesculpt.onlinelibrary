@@ -36,7 +36,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>index</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/main</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>display</servlet-name>

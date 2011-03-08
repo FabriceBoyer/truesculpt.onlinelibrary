@@ -55,7 +55,7 @@ public class UploadPost extends HttpServlet
 		{
 			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
-			resp.sendRedirect("/");
+			resp.sendRedirect("/main");
 		}
 		catch (Exception e)
 		{

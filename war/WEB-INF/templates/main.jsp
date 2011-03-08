@@ -94,7 +94,7 @@
       <br>
   
   		<% if (bShowPrev) { %>
-	    <a href="/?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>"> 
+	    <a href="/main?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>"> 
         <img src="/images/prev.png">
         </a>  
         <% } %>
@@ -102,7 +102,7 @@
         &nbsp Page <%=nCurrPage+1%>&nbsp
          
         <% if (bShowNext) { %>
-	    <a href="/?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>"> 
+	    <a href="/main?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>"> 
         <img src="/images/next.png">
         </a>  
 	    <% } %>
@@ -112,7 +112,7 @@
 		<br> 
 		<br>   		
 		
-		 All the sculptures of the TrueSculpt online library are licensed under the terms of the<br>
+		 All the sculptures are licensed under the terms of the<br>
 		 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a><br>
 		 
    </div> 
