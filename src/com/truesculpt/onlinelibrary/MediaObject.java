@@ -65,6 +65,9 @@ public class MediaObject
 	
 	@Persistent
 	private Integer downloadCount;
+	
+	@Persistent
+	private Boolean hasBeenModerated;
 
 	private static final List<String> IMAGE_TYPES = Arrays.asList("image/png",
 			"image/jpeg", "image/tiff", "image/gif", "image/bmp");
@@ -80,6 +83,7 @@ public class MediaObject
 		this.title = title;
 		this.description = description;
 		this.downloadCount=0;
+		this.hasBeenModerated=false;
 	}
 
 	public Key getKey()
@@ -122,10 +126,30 @@ public class MediaObject
 		downloadCount++;
 	}
 
+	public Boolean getHasBeenModerated()
+	{
+		return hasBeenModerated;
+	}
+	
+	public void setHasBeenModerated(Boolean moderated)
+	{
+		hasBeenModerated=moderated;
+	}
+	
 	public void serveObject(HttpServletResponse resp) throws IOException
 	{
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 		blobstoreService.serve(objectBlob, resp);
+	}
+	
+	 BlobKey getImageBlob()
+	 {
+		 return imageBlob;
+	 }
+
+	BlobKey getObjectBlob()
+	{
+		return objectBlob;
 	}
 	
 	public String getImageURL()
@@ -150,5 +174,17 @@ public class MediaObject
 	{
 		String strKey = KeyFactory.keyToString(key);
 		return "/object?key=" + strKey;
+	}
+	
+	public String getAcceptURL()
+	{
+		String strKey = KeyFactory.keyToString(key);
+		return "/admin?key=" + strKey+"&accept";
+	}
+	
+	public String getRejectURL()
+	{
+		String strKey = KeyFactory.keyToString(key);
+		return "/admin?key=" + strKey+"&reject";
 	}
 }

@@ -25,6 +25,10 @@
     <servlet-name>object</servlet-name>
     <servlet-class>com.truesculpt.onlinelibrary.Object</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>admin</servlet-name>
+    <servlet-class>com.truesculpt.onlinelibrary.Admin</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
@@ -46,5 +50,17 @@
     <servlet-name>object</servlet-name>
     <url-pattern>/object</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>admin</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
 
+  <security-constraint>
+    <web-resource-collection>
+      <url-pattern>/admin</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>*</role-name>
+    </auth-constraint>
+  </security-constraint>
 </web-app>

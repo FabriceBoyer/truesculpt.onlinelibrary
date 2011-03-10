@@ -52,7 +52,7 @@ public class Index extends HttpServlet
 		{
 			strOrderBy="desc";
 		}
-		String strquery = "select from " + MediaObject.class.getName() + " order by "+
+		String strquery = "select from " + MediaObject.class.getName() + " WHERE hasBeenModerated==true order by "+
 						  strSortBy+" "+strOrderBy+" range "+ start+","+stop;
 		
 		Query query = pm.newQuery(strquery);
