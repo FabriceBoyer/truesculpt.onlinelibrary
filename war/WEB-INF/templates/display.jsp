@@ -37,6 +37,15 @@
 
 	<div align="center">
 		
+		<%if (item.getHasBeenModerated()==false){%>
+			<font color="#FF0000">
+				Your sculpture have been correctly uploaded but has not been moderated yet<br>
+			</font>
+				It will be publicly available in the library once it has been manually approved by the manager<br>
+				This sculpture can be rejected without notice if is considered unappropriate to public viewing<br>
+			
+		<%}%>
+		
 		Click on image to import the sculpture into your library <br><br>
 		
 	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>

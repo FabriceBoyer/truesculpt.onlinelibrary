@@ -15,6 +15,7 @@ import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @SuppressWarnings("serial")
 public class UploadPost extends HttpServlet
@@ -55,7 +56,9 @@ public class UploadPost extends HttpServlet
 		{
 			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
-			resp.sendRedirect("/main");
+			String strKey=KeyFactory.keyToString(mediaObj.getKey());
+			String newURL="/display?key="+strKey;
+			resp.addHeader("displayURL",newURL);			
 		}
 		catch (Exception e)
 		{
