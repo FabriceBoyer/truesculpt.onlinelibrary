@@ -25,7 +25,7 @@ public class Admin extends HttpServlet
 		String keyString = req.getParameter("key");
 		if (keyString == null || keyString.equals(""))
 		{
-			String strquery = "select from " + MediaObject.class.getName() + " WHERE hasBeenModerated==false range 0,1";
+			String strquery = "select from " + MediaObject.class.getName() + " WHERE hasBeenModerated=false range 0,1";
 
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			
