@@ -17,6 +17,14 @@ import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.KeyFactory;
 
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+
 @SuppressWarnings("serial")
 public class UploadPost extends HttpServlet
 {
@@ -58,7 +66,30 @@ public class UploadPost extends HttpServlet
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
 			String strKey=KeyFactory.keyToString(mediaObj.getKey());
 			String newURL="/display?key="+strKey;
-			resp.addHeader("displayURL",newURL);			
+			resp.addHeader("displayURL",newURL);	
+			
+			//send email
+	        Properties props = new Properties();
+	        Session session = Session.getDefaultInstance(props, null);
+	
+	        String msgBody = "A new sculpture named " + mediaObj.getTitle() +" have been uploaded and requires validation\n"
+	        	+"The validation adress of the sculpture is : http://truesculpt.appspot.com/admin?key="+strKey+"\n"
+	        	+"The administration adress is : http://truesculpt.appspot.com/admin";
+	
+	        try 
+	        {
+	            Message msg = new MimeMessage(session);
+	            msg.setFrom(new InternetAddress("admin@truesculpt.appspotmail.com", "TrueSculpt administrator"));
+	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress("fabrice.boyer@gmail.com", "TrueSculpt administrator"));
+	            msg.setSubject("[TrueSculpt] A new sculpture named "+mediaObj.getTitle()+" have been uploaded and requires validation");
+	            msg.setText(msgBody);
+	            Transport.send(msg);	    
+	        } 
+	        catch (Exception e)
+	        {
+	        	
+	        }
+		           
 		}
 		catch (Exception e)
 		{
