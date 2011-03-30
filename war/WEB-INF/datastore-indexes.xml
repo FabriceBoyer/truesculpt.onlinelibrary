@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<datastore-indexes autoGenerate="true">
+
+    <datastore-index kind="MediaObject" ancestor="false" >
+        <property name="hasBeenModerated" direction="asc"/>
+        <property name="creation" direction="desc"/>
+    </datastore-index>
+
+    <datastore-index kind="MediaObject" ancestor="false" >
+        <property name="hasBeenModerated" direction="asc"/>
+        <property name="downloadCount" direction="desc"/>
+    </datastore-index>
+
+    <datastore-index kind="MediaObject" ancestor="false" >
+        <property name="hasBeenModerated" direction="asc"/>
+        <property name="downloadCount" direction="asc"/>
+    </datastore-index>
+
+    <datastore-index kind="MediaObject" ancestor="false" >
+        <property name="hasBeenModerated" direction="asc"/>
+        <property name="creation" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>
