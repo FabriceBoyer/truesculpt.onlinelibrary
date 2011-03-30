@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 @SuppressWarnings("serial")
 public class Admin extends HttpServlet
 {
+	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException, ServletException
 	{
 		String keyString = req.getParameter("key");

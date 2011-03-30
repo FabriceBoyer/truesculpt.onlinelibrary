@@ -1,9 +1,7 @@
 package com.truesculpt.onlinelibrary;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -54,9 +52,6 @@ public class MediaObject
 	
 	@Persistent
 	private Boolean hasBeenModerated;
-
-	private static final List<String> IMAGE_TYPES = Arrays.asList("image/png",
-			"image/jpeg", "image/tiff", "image/gif", "image/bmp");
 
 	public MediaObject(User owner, BlobKey imageBlob, BlobKey objectBlob, Date creationTime,
 					   Integer objectSize, String title, String description)

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class Index extends HttpServlet
 {
+	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException, ServletException
 	{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
