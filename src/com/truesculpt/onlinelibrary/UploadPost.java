@@ -49,6 +49,7 @@ public class UploadPost extends HttpServlet
 		Integer objectsize = (Integer)(int)(objectBlobInfo.getSize()+imageBlobInfo.getSize());
 		Date creationDate = objectBlobInfo.getCreation();
 
+		//handles both web based and application based submissions
 		String title = req.getHeader("title");
 		if (title==null)
 		{
