@@ -7,7 +7,32 @@
    	<script type="text/javascript" >
    		function redirect() 
 	    {
-			window.location = "/main"
+	    	var strVersion=gup('version')
+
+	   		var version = 7;
+	   		if (strVersion!="")
+	    	{
+	   			version=parseInt(strVersion);
+	   		}
+	   		if (version>=7)
+	   		{
+				window.location = "/main";
+			}
+			else
+			{
+			    window.location = "/upgrade.html";
+			}
+		}
+		function gup( name )
+		{
+ 			 name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+ 			 var regexS = "[\\?&]"+name+"=([^&#]*)";
+ 			 var regex = new RegExp( regexS );
+ 			 var results = regex.exec( window.location.href );
+  			if( results == null )
+ 			   return "";
+ 			 else
+ 			   return results[1];
 		}
 	</script>    
   </head>

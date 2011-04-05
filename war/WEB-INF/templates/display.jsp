@@ -29,9 +29,9 @@
 </head>
 <body>
 	<script type="text/javascript">
-	    function openObjFileInAndroid(name, image, object) 
+	    function openObjFileInAndroid(name, image, object, size) 
 	    {
-	        Android.openObjFileInAndroid(name, image, object);
+	        Android.openObjFileInAndroid(name, image, object, size);
 	    }
 	</script>
 
@@ -48,7 +48,7 @@
 		
 		Click on image to import the sculpture into your library <br><br>
 		
-	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>')"><br>
+	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>', '<%= getObjectSize()%>' )"><br>
 	          
 	     <c:set var="title" value="<%= item.getTitle() %>"/>
 	     ${fn:escapeXml(title)}<br>
