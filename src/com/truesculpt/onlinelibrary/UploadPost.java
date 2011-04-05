@@ -59,10 +59,15 @@ public class UploadPost extends HttpServlet
 		{
 			description=req.getParameter("description");
 		}
+		String installationID = req.getHeader("installationID");
+		if (installationID==null)
+		{
+			installationID=req.getParameter("installationID");
+		}
 
 		try
 		{
-			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description);
+			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description, installationID);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
 			String strKey=KeyFactory.keyToString(mediaObj.getKey());
 			String newURL="/display?key="+strKey;

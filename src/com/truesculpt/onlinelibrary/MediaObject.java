@@ -52,9 +52,12 @@ public class MediaObject
 	
 	@Persistent
 	private Boolean hasBeenModerated;
-
+	
+	@Persistent
+	private String installationID;
+	
 	public MediaObject(User owner, BlobKey imageBlob, BlobKey objectBlob, Date creationTime,
-					   Integer objectSize, String title, String description)
+					   Integer objectSize, String title, String description, String installationID)
 	{
 		this.imageBlob = imageBlob;
 		this.objectBlob=objectBlob;
@@ -65,6 +68,7 @@ public class MediaObject
 		this.description = description;
 		this.downloadCount=0;
 		this.hasBeenModerated=false;
+		this.installationID=installationID;
 	}
 
 	public Key getKey()
@@ -111,6 +115,12 @@ public class MediaObject
 	{
 		return hasBeenModerated;
 	}
+	
+	public String getInstallationID()
+	{
+		return installationID;
+	}
+	
 	
 	public void setHasBeenModerated(Boolean moderated)
 	{
