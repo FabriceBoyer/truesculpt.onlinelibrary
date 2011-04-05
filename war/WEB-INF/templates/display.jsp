@@ -48,7 +48,7 @@
 		
 		Click on image to import the sculpture into your library <br><br>
 		
-	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>', '<%= getObjectSize()%>' )"><br>
+	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>', '<%= item.getObjectSize()%>' )"><br>
 	          
 	     <c:set var="title" value="<%= item.getTitle() %>"/>
 	     ${fn:escapeXml(title)}<br>
