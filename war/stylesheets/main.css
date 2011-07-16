@@ -1,10 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster&v1);
+
 body {
     font-family: Verdana, Helvetica, sans-serif;
     background-color: #FFFFFF;
 }
+
 table {
 	max-width:400px;	
 	word-wrap:break-word
 }
+
+h1 {font-family:'Lobster';text-align:center;font-size:200%;margin-top:0px;font-weight:normal;text-shadow: 4px 4px 4px #aaa;}
 
 img { border: none; }
