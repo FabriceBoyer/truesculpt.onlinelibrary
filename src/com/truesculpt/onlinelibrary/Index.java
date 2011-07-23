@@ -26,7 +26,7 @@ public class Index extends HttpServlet
 		   nPageNumber=Integer.parseInt(strPage);
 		  }
 		  
-		  int nElemsPerPage=10;
+		  int nElemsPerPage=6;
 		  String strElemsPerPage=req.getParameter("ElemsPerPage");	     
 	     if (strElemsPerPage!=null)
 	     {
