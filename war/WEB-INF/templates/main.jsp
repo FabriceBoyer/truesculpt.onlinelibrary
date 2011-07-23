@@ -38,7 +38,12 @@
 	<div align="center" id="filters">
 	
 		<form action="" method="get" accept-charset="utf-8">
-			Order 
+			<select name="sortBy" onchange="javascript:form.submit()" size="1">
+				<option <% if ("creation".equals(sortBy)) { %> selected <% } %>
+					value="creation">Date</option>
+				<option <% if ("downloadCount".equals(sortBy)) { %> selected <% } %>
+					value="downloadCount">Download</option>
+			</select>			 
 			<select name="orderBy" onchange="javascript:form.submit()"
 				size="1">
 				<option <% if ("asc".equals(orderBy)) { %> selected <% } %>
@@ -46,14 +51,6 @@
 				<option <% if ("desc".equals(orderBy)) { %> selected <% } %>
 					value="desc">Decreasing</option>
 			</select> 
-			&nbsp&nbsp
-			 Sort by 
-			 <select name="sortBy" onchange="javascript:form.submit()" size="1">
-				<option <% if ("creation".equals(sortBy)) { %> selected <% } %>
-					value="creation">Date</option>
-				<option <% if ("downloadCount".equals(sortBy)) { %> selected <% } %>
-					value="downloadCount">Download</option>
-			</select>
 			<input type="hidden" name="page" value="0">
 		</form>
 		<br>
@@ -63,9 +60,13 @@
 	<div align="center" id="container">
 
 	<!--
-	To be completed by infinite scroll script with data 
-	TODO add loading animation when needed
+	To be completed by  scroll script with data from page 
 	 -->	
+	 
+	</div>
+	
+	<div align="center" id="waiter">
+	 <br>Loading ...<br>
 	</div>
 	
 	<!-- 

@@ -1,5 +1,5 @@
 var elemContentHeight = 800;
-var updateOffset = 400;
+var updateOffset = 600;
 
 var totalContentHeight = 0;
 var pageHeight = document.documentElement.clientHeight;
@@ -27,6 +27,7 @@ function putImages()
 			xmlhttp=null;						
 			totalContentHeight += elemContentHeight;
 			page+=1;
+			document.getElementById('waiter').style.visibility = 'hidden';
 		  }
 	}
 }		
@@ -80,6 +81,7 @@ function scroll()
 			xmlhttp.send();
 	
 			xmlhttp.onreadystatechange=putImages;	
+			document.getElementById('waiter').style.visibility = 'visible';
 		}
 	}
 }

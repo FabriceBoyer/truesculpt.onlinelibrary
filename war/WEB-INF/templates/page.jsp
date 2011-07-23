@@ -9,7 +9,6 @@
        List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
 %>
 
-
 <% int nFileCount=files.size();		 
        if ( nFileCount > 0) {%>
 <%for (int i = 0; i < nFileCount; i++) {%>
@@ -18,12 +17,10 @@
 <a href="<%=item.getDisplayURL()%>"> 
 <img src="<%= item.getImageThumbnailURL() %>"> 
 </a>
-
 <br>
-
 <% } %>
 <%} else { %>
-No extra media found
+No extra media found<br>
 <% } %>
 <br>
 	
