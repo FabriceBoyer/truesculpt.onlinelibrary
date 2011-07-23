@@ -23,7 +23,7 @@ h1 {
 	text-align:left;
 	text-indent:35px;
 	margin: 0 auto;
-	width:800px;
+	width:100%;
 	margin-bottom:10px;
 }
 
@@ -50,7 +50,7 @@ a{
 
 #container{
 	margin: 0 auto;
-	width:800px;
+	width:100%;
 	border:1px solid #333;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;

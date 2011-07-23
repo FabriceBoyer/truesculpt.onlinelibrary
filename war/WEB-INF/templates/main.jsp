@@ -66,7 +66,7 @@
 				<option <% if ("downloadCount".equals(sortBy)) { %> selected <% } %>
 					value="downloadCount">Download</option>
 			</select>
-			<input type="hidden" name="page" value="<%= nCurrPage %>">
+			<input type="hidden" name="page" value="0">
 		</form>
 		<br>
 	</div>
