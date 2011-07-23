@@ -2,6 +2,8 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
   <application>truesculpt</application>
   <version>1</version>
+  <threadsafe>true</threadsafe>
+  <warmup-requests-enabled>true</warmup-requests-enabled>
   
 </appengine-web-app>
 
