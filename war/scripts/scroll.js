@@ -1,4 +1,4 @@
-var elemContentHeight = 400;
+var elemContentHeight = 800;
 var updateOffset = 400;
 
 var totalContentHeight = 0;

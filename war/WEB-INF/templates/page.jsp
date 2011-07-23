@@ -19,8 +19,7 @@
 <img src="<%= item.getImageThumbnailURL() %>"> 
 </a>
 
-<% if (i%2==1) {%>
-<br> <% } %>
+<br>
 
 <% } %>
 <%} else { %>

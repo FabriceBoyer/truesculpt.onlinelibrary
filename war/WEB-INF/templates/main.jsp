@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-       List<MediaObject> files = (List<MediaObject>) request.getAttribute("files");
        Integer nCurrPage=(Integer) request.getAttribute("page");
        Boolean bShowNext=(Boolean) request.getAttribute("shownext");
        Boolean bShowPrev=(Boolean) request.getAttribute("showprev");
@@ -63,8 +62,10 @@
 	
 	<div align="center" id="container">
 
-
-		
+	<!--
+	To be completed by infinite scroll script with data 
+	TODO add loading animation when needed
+	 -->	
 	</div>
 	
 	<!-- 
