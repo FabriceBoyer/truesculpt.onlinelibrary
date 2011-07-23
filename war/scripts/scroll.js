@@ -4,7 +4,7 @@ var updateOffset = 400;
 var totalContentHeight = 0;
 var pageHeight = document.documentElement.clientHeight;
 var scrollPosition;
-var xmlhttp;
+var xmlhttp =null;
 
 var sortBy=gup("sortBy");
 var orderBy=gup("orderBy");
@@ -22,7 +22,11 @@ function putImages()
 		  if(xmlhttp.responseText)
 		  {
 			 var resp = xmlhttp.responseText;
-			 document.getElementById("container").innerHTML += resp;					
+			 document.getElementById("container").innerHTML += resp;	
+			 
+			xmlhttp=null;						
+			totalContentHeight += elemContentHeight;
+			page+=1;
 		  }
 	}
 }		
@@ -41,41 +45,41 @@ function gup( name )
 
 function scroll()
 {	
-	if(navigator.appName == "Microsoft Internet Explorer")
-		scrollPosition = document.documentElement.scrollTop;
-	else
-		scrollPosition = window.pageYOffset;		
-	
-	if((totalContentHeight - pageHeight - scrollPosition) < updateOffset)
-	{				
-		if(window.XMLHttpRequest)
-			xmlhttp = new XMLHttpRequest();
+	if (xmlhttp==null)
+	{
+		if(navigator.appName == "Microsoft Internet Explorer")
+			scrollPosition = document.documentElement.scrollTop;
 		else
-			if(window.ActiveXObject)
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			scrollPosition = window.pageYOffset;		
+		
+		if((totalContentHeight - pageHeight - scrollPosition) < updateOffset)
+		{				
+			if(window.XMLHttpRequest)
+				xmlhttp = new XMLHttpRequest();
 			else
-				alert ("Bummer! Your browser does not support XMLHTTP!");		  
-		  
+				if(window.ActiveXObject)
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				else
+					alert ("Bummer! Your browser does not support XMLHTTP!");		  
+			  
+			
+			var url="?page="+page;		
 		
-		var url="?page="+page;		
+			if (sortBy!="")
+			{
+				url+="&sortBy="+sortBy;
+			}
 	
-		if (sortBy!="")
-		{
-			url+="&sortBy="+sortBy;
+			if (orderBy!="")
+			{
+				url+="&orderBy="+orderBy;
+			}	
+			url+="&rawpage=true";
+			
+			xmlhttp.open("GET",url,true);
+			xmlhttp.send();
+	
+			xmlhttp.onreadystatechange=putImages;	
 		}
-
-		if (orderBy!="")
-		{
-			url+="&orderBy="+orderBy;
-		}	
-		url+="&rawpage=true";
-		
-		xmlhttp.open("GET",url,true);
-		xmlhttp.send();
-
-		xmlhttp.onreadystatechange=putImages;		
-		totalContentHeight += elemContentHeight;
-		
-		page+=1;
 	}
 }
