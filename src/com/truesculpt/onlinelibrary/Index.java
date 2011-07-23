@@ -26,7 +26,7 @@ public class Index extends HttpServlet
 		   nPageNumber=Integer.parseInt(strPage);
 		  }
 		  
-		  int nElemsPerPage=6;
+		  int nElemsPerPage=4;
 		  String strElemsPerPage=req.getParameter("ElemsPerPage");	     
 	     if (strElemsPerPage!=null)
 	     {
@@ -70,7 +70,15 @@ public class Index extends HttpServlet
 		req.setAttribute("showprev", nCurrPage!=0);
 	    req.setAttribute("sortBy",strSortBy);
 	    req.setAttribute("orderBy",strOrderBy);
-		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/templates/main.jsp");
+	    
+	    String strTemplate="WEB-INF/templates/main.jsp";
+	    
+	    String strRawPage=req.getParameter("rawpage");
+	    if (strRawPage!=null && strRawPage.equals("true"))
+	    {
+	    	strTemplate="WEB-INF/templates/page.jsp";	    
+	    }
+		RequestDispatcher dispatcher = req.getRequestDispatcher(strTemplate);
 		dispatcher.forward(req, resp);
 	}
 	

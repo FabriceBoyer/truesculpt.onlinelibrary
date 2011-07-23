@@ -20,13 +20,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-	<title>TrueSculpt</title>
-	
+	<title>TrueSculpt</title>	
 	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
     <script type="text/javascript" src="/scripts/analytics.js" ></script>
+    <script type="text/javascript" src="/scripts/scroll.js" ></script>
 </head>
 
-<body>
+<body onload="setInterval('scroll();', 250);">
 
 	<ul>
 		<% 
@@ -37,6 +37,7 @@
 	</ul>
 
 	<div align="center" id="filters">
+	
 		<form action="" method="get" accept-charset="utf-8">
 			Order 
 			<select name="orderBy" onchange="javascript:form.submit()"
@@ -48,8 +49,7 @@
 			</select> 
 			&nbsp&nbsp
 			 Sort by 
-			 <select name="sortBy"
-				onchange="javascript:form.submit()" size="1">
+			 <select name="sortBy" onchange="javascript:form.submit()" size="1">
 				<option <% if ("creation".equals(sortBy)) { %> selected <% } %>
 					value="creation">Date</option>
 				<option <% if ("downloadCount".equals(sortBy)) { %> selected <% } %>
@@ -58,35 +58,21 @@
 			<input type="hidden" name="page" value="0">
 		</form>
 		<br>
+		
 	</div>
 	
 	<div align="center" id="container">
 
-		<% int nFileCount=files.size();		 
-         if ( nFileCount > 0) {%>
-		<%for (int i = 0; i < nFileCount; i++) {%>
-		<%  MediaObject item = files.get(i); %>
-		
-		<a href="<%=item.getDisplayURL()%>"> 
-		<img src="<%= item.getImageThumbnailURL() %>"> 
-		</a>
-		
-		<% if (i%2==1) {%>
-		<br> <% } %>
-		
-		<% } %>
-		<%} else { %>
-		No media found.
-		<% } %>
-		<br>
+
 		
 	</div>
 	
+	<!-- 
 	<div align="center" id="navigation">
-	
+		
 		<% if (bShowPrev) { %>
 		<a href="/main?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>">
-			<img src="/images/prev.png"> 
+			<img src="/images/prev.png" > 
 		</a>
 		<% } %>
 
@@ -94,19 +80,22 @@
 
 		<% if (bShowNext) { %>
 		<a href="/main?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>">
-			<img src="/images/next.png">
+			<img src="/images/next.png" >
 		 </a>
 		<% } %>
 
 		<br>
 		Page <%=nCurrPage+1%>&nbsp
 		<br>
-		
-		 <br> <br> All the sculptures are licensed under the terms of the<br>
+	</div>
+	-->
+	
+	<div align="center" id="footer">
+		 <br>All the sculptures are licensed under the terms of the<br>
 		 <a	href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
 		 creative commons share alike, non commercial
 		 </a>
-		 <br>
+		 <br>		 
 	</div>
 
 </body>

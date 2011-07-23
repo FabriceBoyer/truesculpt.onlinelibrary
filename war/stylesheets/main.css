@@ -58,11 +58,15 @@ a{
 	text-align:center;
 }
 
+#navigation 
+{
+}
+
 img{
-	border:10px solid #444;
+	border:8px solid #444;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 10px;
-	margin: 15px;
+	margin: 10px;
 }
 
 img:hover{
