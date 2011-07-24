@@ -9,7 +9,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Truesculpt Upload</title>
-  <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />  
+  <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">  
   <script type="text/javascript" src="/scripts/analytics.js" ></script>
 </head>
 <body>

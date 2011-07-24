@@ -12,17 +12,16 @@
        String sortBy=(String) request.getAttribute("sortBy");
        String orderBy=(String) request.getAttribute("orderBy");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"  "http://www.w3.org/TR/html4/strict.dtd">
 
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 	<title>TrueSculpt</title>	
-	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-    <script type="text/javascript" src="/scripts/analytics.js" ></script>
-    <script type="text/javascript" src="/scripts/scroll.js" ></script>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css">
+    <script type="text/javascript" src="/scripts/analytics.js"></script>
+    <script type="text/javascript" src="/scripts/scroll.js"></script>
 </head>
 
 <body onload="setInterval('scroll();', 250);">
@@ -53,28 +52,24 @@
 			</select> 
 			<input type="hidden" name="page" value="0">
 		</form>
-		<br>
-		
+		<br>		
 	</div>
 	
 	<div align="center" id="container">
-
-	<!--
-	To be completed by  scroll script with data from page 
-	 -->	
-	 
+ 
 	</div>
 	
 	<div align="center" id="waiter">
-	 <br>Loading ...<br>
+	 <h1>Loading ...</h1>
 	</div>
 	
-	<!-- 
+	<% boolean bShowNavigation =false;
+	   if (bShowNavigation) { %> 
 	<div align="center" id="navigation">
 		
 		<% if (bShowPrev) { %>
 		<a href="/main?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>">
-			<img src="/images/prev.png" > 
+			<img src="/images/prev.png" alt="Previous"> 
 		</a>
 		<% } %>
 
@@ -82,7 +77,7 @@
 
 		<% if (bShowNext) { %>
 		<a href="/main?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>">
-			<img src="/images/next.png" >
+			<img src="/images/next.png" alt="Next">
 		 </a>
 		<% } %>
 
@@ -90,7 +85,7 @@
 		Page <%=nCurrPage+1%>&nbsp
 		<br>
 	</div>
-	-->
+	<%} %>
 	
 	<div align="center" id="footer">
 		 <br>All the sculptures are licensed under the terms of the<br>

@@ -14,8 +14,10 @@
 <%for (int i = 0; i < nFileCount; i++) {%>
 <%  MediaObject item = files.get(i); %>
 
+<c:set var="title" value="<%= item.getTitle() %>"/>
+	     
 <a href="<%=item.getDisplayURL()%>"> 
-<img src="<%= item.getImageThumbnailURL() %>"> 
+<img src="<%= item.getImageThumbnailURL() %>" alt="${fn:escapeXml(title)}"> 
 </a>
 <br>
 <% } %>
