@@ -34,11 +34,12 @@
 			
 		<%}%>
 		
-		Click on image to import the sculpture into your library <br><br>
+		<a href="" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>', '<%= item.getObjectSize()%>' )">Click here to import this sculpture into your library</a> 
+		<br><br>
+		<c:set var="title" value="<%= item.getTitle() %>"/>
 		
-	     <img src="<%= item.getImageURL()%>" onClick="openObjFileInAndroid('<%= item.getTitle() %>', '<%= item.getImageURL()%>', '<%= item.getObjectURL()%>', '<%= item.getObjectSize()%>' )"><br>
-	          
-	     <c:set var="title" value="<%= item.getTitle() %>"/>
+	     <img src="<%= item.getImageURL()%>" alt="${fn:escapeXml(title)}" width=300><br>	          
+	     
 	     ${fn:escapeXml(title)}<br>
 	     
 	     <!--

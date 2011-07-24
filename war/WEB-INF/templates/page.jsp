@@ -16,7 +16,7 @@
 
 <c:set var="title" value="<%= item.getTitle() %>"/>
 	     
-<a href="<%=item.getDisplayURL()%>"> 
+<a href="<%=item.getDisplayURL()%>" style="text-decoration: none"> 
 <img src="<%= item.getImageThumbnailURL() %>" alt="${fn:escapeXml(title)}"> 
 </a>
 <br>

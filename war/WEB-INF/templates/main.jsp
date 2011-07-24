@@ -60,6 +60,7 @@
 	</div>
 	
 	<div align="center" id="waiter">
+	 <img src="/images/loading.gif" alt="Loading">
 	 <h1>Loading ...</h1>
 	</div>
 	
@@ -68,7 +69,7 @@
 	<div align="center" id="navigation">
 		
 		<% if (bShowPrev) { %>
-		<a href="/main?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>">
+		<a href="/main?page=<%=nCurrPage-1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>" style="text-decoration: none">
 			<img src="/images/prev.png" alt="Previous"> 
 		</a>
 		<% } %>
@@ -76,7 +77,7 @@
 		&nbsp 
 
 		<% if (bShowNext) { %>
-		<a href="/main?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>">
+		<a href="/main?page=<%=nCurrPage+1%>&sortBy=<%=sortBy%>&orderBy=<%=orderBy%>" style="text-decoration: none">
 			<img src="/images/next.png" alt="Next">
 		 </a>
 		<% } %>
