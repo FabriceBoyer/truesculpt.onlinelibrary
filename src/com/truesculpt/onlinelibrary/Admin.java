@@ -17,6 +17,9 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
+import java.util.Collections;
+import net.sf.jsr107cache.*;
+
 @SuppressWarnings("serial")
 public class Admin extends HttpServlet
 {
@@ -63,6 +66,14 @@ public class Admin extends HttpServlet
 			{
 				result.setHasBeenModerated(true);
 				resp.sendRedirect("/admin");
+				
+				//clears invalid cache
+				try {
+					Cache  cache = CacheManager.getInstance().getCacheFactory().createCache(Collections.emptyMap());
+					cache.clear();
+				} catch (CacheException e) {
+					resp.sendRedirect("/?error="+ URLEncoder.encode("cache not initialized", "UTF-8"));
+				}				
 			}
 			else if (bReject)
 			{
