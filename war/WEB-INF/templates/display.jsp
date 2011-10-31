@@ -14,8 +14,11 @@
   <title>TrueSculpt viewer</title>
   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">  
   <script type="text/javascript" src="/scripts/analytics.js" ></script>
+  <script type="text/javascript" src="/scripts/glge.js"></script>
+  <script type="text/javascript" src="/scripts/modelviewer.js"></script>
+  <script type="text/javascript" src="/scripts/ZipFile.complete.js"></script>
 </head>
-<body>
+<body onload="modelviewer(<%= item.getObjectURL()%>)">
 	<script type="text/javascript">
 	    function openObjFileInAndroid(name, image, object, size) 
 	    {
@@ -54,7 +57,9 @@
 	     Downloaded <%=item.getDownloadCount()%> times<br>
 	     
 	     <a href="<%= item.getObjectURL()%>">Download as zipped obj file</a>   
-	     <br>	     
+	     <br>
+	     <canvas id="modelviewer" width="200" height="200"></canvas>	  
+	     <p id="statustext"></p>   
 	     <br>
    		 <a href="javascript:javascript:history.go(-1)">Go back</a>
 	     
