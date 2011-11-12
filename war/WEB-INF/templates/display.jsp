@@ -13,10 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>TrueSculpt viewer</title>
   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">  
-  <script type="text/javascript" src="/scripts/analytics.js" ></script>
-  <script type="text/javascript" src="/scripts/glge.js"></script>
-  <script type="text/javascript" src="/scripts/modelviewer.js"></script>
-  <script type="text/javascript" src="/scripts/ZipFile.complete.js"></script>
+  <script type="text/javascript" src="/scripts/analytics.js" ></script> 
 </head>
 <body onload="modelviewer(<%= item.getObjectURL()%>)">
 	<script type="text/javascript">
