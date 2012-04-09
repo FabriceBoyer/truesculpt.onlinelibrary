@@ -31,8 +31,7 @@ public class XMLData extends HttpServlet
 			resp.sendRedirect("/?error="+ URLEncoder.encode("cache not initialized", "UTF-8"));
 		}
 
-		String key = req.getQueryString();		
-
+		String key = "XML";	
 		
 		if (cache.containsKey(key)) {
 			String value = (String) cache.get(key);
