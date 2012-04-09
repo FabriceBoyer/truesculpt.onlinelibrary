@@ -33,13 +33,13 @@ public class XMLData extends HttpServlet
 
 		String key = req.getQueryString();		
 
-		/*
+		
 		if (cache.containsKey(key)) {
 			String value = (String) cache.get(key);
 			resp.setContentType("text/xml");
             resp.getWriter().println(value);
 		}
-		else*/
+		else
 		{
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 				
