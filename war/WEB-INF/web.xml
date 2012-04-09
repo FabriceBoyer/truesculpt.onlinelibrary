@@ -29,6 +29,10 @@
     <servlet-name>admin</servlet-name>
     <servlet-class>com.truesculpt.onlinelibrary.Admin</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>xmlData</servlet-name>
+    <servlet-class>com.truesculpt.onlinelibrary.XMLData</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
@@ -53,6 +57,10 @@
   <servlet-mapping>
     <servlet-name>admin</servlet-name>
     <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>xmlData</servlet-name>
+    <url-pattern>/xml</url-pattern>
   </servlet-mapping>
 
   <security-constraint>
