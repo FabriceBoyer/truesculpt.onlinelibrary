@@ -85,9 +85,9 @@ public class UploadPost extends HttpServlet
 	        try 
 	        {
 	            Message msg = new MimeMessage(session);
-	            msg.setFrom(new InternetAddress("admin@truesculpt.appspotmail.com", "TrueSculpt administrator"));
+				msg.setFrom(new InternetAddress("admin@truesculpt-hrd.appspotmail.com", "TrueSculpt administrator"));
 	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress("fabrice.boyer@gmail.com", "TrueSculpt administrator"));
-	            msg.setSubject("[TrueSculpt] A new sculpture named "+mediaObj.getTitle()+" have been uploaded and requires validation");
+	            msg.setSubject("[TrueSculpt] A new sculpture named "+mediaObj.getTitle()+" has been uploaded and requires validation");
 	            msg.setText(msgBody);
 	            Transport.send(msg);	    
 	        } 
