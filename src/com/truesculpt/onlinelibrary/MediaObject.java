@@ -56,8 +56,11 @@ public class MediaObject
 	@Persistent
 	private String installationID;
 	
+	@Persistent
+	private Boolean isFeatured;
+	
 	public MediaObject(User owner, BlobKey imageBlob, BlobKey objectBlob, Date creationTime,
-					   Integer objectSize, String title, String description, String installationID)
+					   Integer objectSize, String title, String description, String installationID, Boolean isFeatured)
 	{
 		this.imageBlob = imageBlob;
 		this.objectBlob=objectBlob;
@@ -69,6 +72,7 @@ public class MediaObject
 		this.downloadCount=0;
 		this.hasBeenModerated=false;
 		this.installationID=installationID;
+		this.isFeatured=isFeatured;
 	}
 
 	public Key getKey()
@@ -178,4 +182,9 @@ public class MediaObject
 		String strKey = KeyFactory.keyToString(key);
 		return "/admin?key=" + strKey+"&reject";
 	}
+	
+	public Boolean getIsFeatured()
+	{
+		return isFeatured;
+	}	
 }

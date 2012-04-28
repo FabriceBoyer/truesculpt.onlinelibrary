@@ -68,7 +68,7 @@ public class UploadPost extends HttpServlet
 
 		try
 		{
-			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description, installationID);
+			MediaObject mediaObj = new MediaObject(null, imageBlobKey,objectBlobKey, creationDate, objectsize, title, description, installationID, false);
 			PMF.get().getPersistenceManager().makePersistent(mediaObj);
 			String strKey=KeyFactory.keyToString(mediaObj.getKey());
 			String newURL="/display?key="+strKey;
