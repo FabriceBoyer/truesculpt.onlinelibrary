@@ -185,6 +185,13 @@ public class MediaObject
 	
 	public Boolean getIsFeatured()
 	{
-		return isFeatured;
+		if (isFeatured==null)
+		{
+			return false;
+		}
+		else
+		{
+			return isFeatured;
+		}
 	}	
 }
