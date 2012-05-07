@@ -1,4 +1,5 @@
 <%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -53,6 +54,13 @@
 	     
 	     Downloaded <%=item.getDownloadCount()%> times<br>
 	     
+	     <%if (item.getIsFeatured()==true){%>
+	     This sculpture has been marked as "featured" by the application manager<br>
+	     <%}else{%>
+	      <!--TODO only for admin user -->
+	     <a href="/feature?key="<%KeyFactory.keyToString(item.getKey());%>>Feature this sculpture</a>  
+	     <%}%>
+	     
 	     <a href="<%= item.getObjectURL()%>">Download as zipped obj file</a>   
 	     <br>
 	     <canvas id="modelviewer" width="200" height="200"></canvas>	  
@@ -66,10 +74,7 @@
 	     Licensed under the terms of the <br>
 	     <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">creative commons share alike, non commercial</a>  
 	     
-	     <br>
-	    
+	     <br>	    
 	</div>
-  
-
 </body>
 </html>

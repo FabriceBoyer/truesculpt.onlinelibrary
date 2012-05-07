@@ -33,6 +33,10 @@
     <servlet-name>xmlData</servlet-name>
     <servlet-class>com.truesculpt.onlinelibrary.XMLData</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>feature</servlet-name>
+    <servlet-class>com.truesculpt.onlinelibrary.Feature</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
@@ -61,6 +65,10 @@
   <servlet-mapping>
     <servlet-name>xmlData</servlet-name>
     <url-pattern>/xml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>feature</servlet-name>
+    <url-pattern>/feature</url-pattern>
   </servlet-mapping>
 
   <security-constraint>

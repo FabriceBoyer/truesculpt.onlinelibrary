@@ -131,6 +131,11 @@ public class MediaObject
 		hasBeenModerated=moderated;
 	}
 	
+	public void setIsFeatured(Boolean featured)
+	{
+		isFeatured=featured;
+	}
+	
 	public void serveObject(HttpServletResponse resp) throws IOException
 	{
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();

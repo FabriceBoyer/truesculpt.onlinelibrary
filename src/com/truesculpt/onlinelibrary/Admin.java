@@ -65,11 +65,18 @@ public class Admin extends HttpServlet
 			if( bAccept)
 			{
 				result.setHasBeenModerated(true);
+				
+				Boolean bFeature=req.getParameter("feature")!=null;
+				if (bFeature)
+				{
+					result.setIsFeatured(true);
+				}
+				
 				resp.sendRedirect("/admin");
 				
 				//clears invalid cache
 				try {
-					Cache  cache = CacheManager.getInstance().getCacheFactory().createCache(Collections.emptyMap());
+					Cache cache = CacheManager.getInstance().getCacheFactory().createCache(Collections.emptyMap());
 					cache.clear();
 				} catch (CacheException e) {
 					resp.sendRedirect("/?error="+ URLEncoder.encode("cache not initialized", "UTF-8"));
