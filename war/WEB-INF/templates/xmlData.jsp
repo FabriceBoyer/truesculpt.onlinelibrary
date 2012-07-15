@@ -17,6 +17,7 @@
 		<installationID><%= item.getInstallationID()%></installationID>
 		<imageURL><%=item.getImageURL()%></imageURL>
 		<imageThumbnailURL><%= item.getImageThumbnailURL() %></imageThumbnailURL>
+		<objectURL><%=item.getObjectURL()%></objectURL>
 		<objectSizeKo><%= item.getObjectSize() / 1000 %></objectSizeKo>
 		<isFeatured><%= item.getIsFeatured() %></isFeatured>
 	</item>
