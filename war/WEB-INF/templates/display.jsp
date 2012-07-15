@@ -1,6 +1,8 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.truesculpt.onlinelibrary.MediaObject" %>
+<%@ page import="com.google.appengine.api.users.UserService" %>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" 
@@ -57,10 +59,12 @@
 	     <%if (item.getIsFeatured()==true){%>
 	     This sculpture has been marked as "featured" by the application manager<br>
 	     <%}else{%>
-	      <!--TODO only for admin user -->
-	     <a href="/feature?key="<%KeyFactory.keyToString(item.getKey());%>>Feature this sculpture</a>  
+	        <% UserService user = UserServiceFactory.getUserService(); %>
+	    	<% if (user!=null && user.isUserLoggedIn() && user.isUserAdmin()) { %>	     
+	    	 <a href="/feature?key=<%=KeyFactory.keyToString(item.getKey())%>">Feature this sculpture</a>  
+	        <%}%>
 	     <%}%>
-	     
+	     <br>
 	     <a href="<%= item.getObjectURL()%>">Download as zipped obj file</a>   
 	     <br>
 	     <canvas id="modelviewer" width="200" height="200"></canvas>	  
