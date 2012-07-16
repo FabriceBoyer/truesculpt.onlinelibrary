@@ -37,7 +37,7 @@
 	     
 	     <a href="<%= item.getAcceptURL()%>">Accept</a>   
 	     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	
-	     b<a href="<%= item.getAcceptURL() +"&feature"%>">Accept and Feature</a>   
+	     <a href="<%= item.getAcceptURL() +"&feature"%>">Accept and Feature</a>   
 	     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	
 	     <a href="<%= item.getRejectURL()%>">Reject</a>      
 	    
